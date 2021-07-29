@@ -1,0 +1,49 @@
+/* Nav container */
+.topbarContainer {
+  display: flex;
+  height: 70px;
+  width: 100%;
+  background-color: white;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  box-shadow: 0px 10px 13px -7px #0000004f;
+}
+
+/* Position Items on NavBar*/
+
+/* Logo */
+.topbarLogo {
+  display: flex;
+  margin-left: 40px;
+  width: 50px;
+  height: 50px;
+  background: #0073b6;
+  border-radius: 10px;
+}
+
+.topbarLogo img {
+  margin: 5px;
+  height: 40px;
+  width: 40px;
+}
+
+.topbarLogo p {
+  margin-left: 10px;
+  margin-top: 12px;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.topbarLogo:hover {
+  cursor: pointer;
+  width: 200px;
+  transition-duration: 200ms;
+  color: white;
+}
+
+/* SearchBar */
+
+.searchbar {
+  background-color: tomato;
+}
