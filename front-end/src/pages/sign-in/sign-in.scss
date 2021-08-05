@@ -1,0 +1,142 @@
+/* Color Library */
+$color-primary: #0073b6;
+$color-lighter: #eef3f898;
+$color-darker: #eef3f8;
+$color-secondary: white;
+
+/* Nav container */
+
+body {
+  background-color: #f8faff;
+}
+
+nav {
+  .topbarContainer {
+    display: flex;
+    height: 70px;
+    width: 100%;
+    align-items: center;
+    position: sticky;
+    top: 0;
+
+    /* Logo */
+    .topbarLeft {
+      flex: 4;
+      margin-left: 300px;
+      .logo-container {
+        max-width: 200px;
+        .topbarLogo {
+          display: flex;
+          width: 50px;
+          height: 50px;
+          background: $color-primary;
+          border-radius: 10px;
+          img {
+            margin: 5px;
+            height: 40px;
+            width: 40px;
+          }
+          h1 {
+            margin-left: 10px;
+            margin-top: 10px;
+            font-weight: 600;
+            color: black;
+          }
+          &:hover {
+            cursor: pointer;
+            background: $color-primary;
+            width: 240px;
+            transition-duration: 200ms;
+            h1 {
+              color: white;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /* User Connection */
+  .topbarRight {
+    display: flex;
+    flex: 2;
+
+    .btn-container {
+      line-height: 40px;
+      text-align: center;
+      .btn-return {
+        vertical-align: middle;
+        margin-right: 10px;
+        height: 40px;
+        width: 200px;
+        .returnIcon {
+          vertical-align: middle;
+        }
+        &:hover {
+          cursor: pointer;
+          font-weight: 600;
+          background-color: #eef3f8;
+        }
+      }
+    }
+  }
+}
+
+.main {
+  display: flex;
+  margin-top: 150px;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+
+  .information-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+      margin-left: 12px;
+      font-weight: 200;
+      font-size: 50px;
+      max-width: 485px;
+    }
+
+    h3 {
+      margin-left: 12px;
+      margin-top: 10px;
+      font-weight: 200;
+      font-size: 20px;
+      max-width: 485px;
+    }
+    .sign-in-Container {
+      display: flex;
+      margin-top: 20px;
+      flex-direction: column;
+      max-width: 500px;
+      input {
+        margin-top: 40px;
+        border: 1px solid black;
+        max-width: 460px;
+        padding: 20px;
+      }
+      a {
+        margin-top: 20px;
+        max-width: 156px;
+      }
+      button {
+        font-weight: 600;
+        font-size: 20px;
+        margin-top: 30px;
+        padding: 20px;
+        border-radius: 30px;
+        cursor: pointer;
+        background: $color-darker;
+        border: 2px solid $color-primary;
+        &:hover {
+          background: $color-primary;
+          color: white;
+        }
+      }
+    }
+  }
+}
