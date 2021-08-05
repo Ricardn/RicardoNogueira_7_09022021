@@ -1,0 +1,136 @@
+/* Color Library */
+$color-primary: #0073b6;
+$color-lighter: #eef3f898;
+$color-secondary: white;
+
+/* Nav container */
+.topbarContainer {
+  display: flex;
+  height: 70px;
+  width: 100%;
+  background-color: white;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  box-shadow: 0px 10px 13px -7px #0000004f;
+}
+
+/* Logo */
+.topbarLeft {
+  display: flex;
+  flex: 3;
+  margin-left: 40px;
+
+  .topbarLogo {
+    display: flex;
+    width: 50px;
+    height: 50px;
+    background: $color-primary;
+    border-radius: 10px;
+    img {
+      margin: 5px;
+      height: 40px;
+      width: 40px;
+    }
+    h1 {
+      margin-left: 10px;
+      margin-top: 10px;
+      font-weight: 600;
+      color: black;
+    }
+    &:hover {
+      cursor: pointer;
+      background: $color-primary;
+      width: 280px;
+      transition-duration: 200ms;
+      h1 {
+        color: white;
+      }
+    }
+  }
+}
+
+/* SearchBar */
+.topbarCenter {
+  flex: 5;
+  .searchbar {
+    display: flex;
+    align-items: center;
+    margin-left: 250px;
+    width: 250px;
+    height: 50px;
+    background-color: $color-lighter;
+    border-radius: 30px;
+    .searchIcon {
+      padding: 6px;
+      background-color: white;
+      border-radius: 30px;
+      margin: 6px;
+      &:hover {
+        cursor: pointer;
+        background-color: $color-primary;
+        color: white;
+      }
+    }
+    input {
+      border: 0;
+      width: 180px;
+      padding: 6px;
+      border-radius: 0px 30px 30px 0px;
+    }
+  }
+}
+
+/* User Informations */
+.topbarRight {
+  flex: 3;
+  .topbarIcons {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    .iconBody {
+      background: $color-lighter;
+      padding: 8px;
+      border-radius: 30px;
+      margin-right: 10px;
+      .topbarIconItem {
+        background: white;
+        padding: 6px;
+        border-radius: 30px;
+        .topbarIconBadge {
+          justify-content: center;
+          background: rgb(250, 100, 100);
+          display: flex;
+          position: absolute;
+          font-size: 16px;
+          font-weight: 600;
+          color: black;
+          transform: translate(12px, -40px);
+          border-radius: 50px;
+          width: 20px;
+          height: 20px;
+        }
+         &:hover {
+        cursor: pointer;
+        background-color: $color-primary;
+        color: white;
+      }
+      }
+    }
+
+    .userProfile {
+     background: white;
+        padding: 6px;
+        border-radius: 30px;
+      img {
+        width: 30px;
+        height: 30px;
+      }
+       &:hover {
+        cursor: pointer;
+        background-color: $color-primary;
+        color: white;
+      }
+    }
+  }
+}
