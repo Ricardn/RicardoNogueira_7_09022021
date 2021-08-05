@@ -1,49 +1,57 @@
-import "./Topbar.css";
-import { Search, Person, Chat, Notifications, AccountCircle } from '@material-ui/icons';
+import React from "react";
+import "./Topbar.scss";
+import {
+  Search,
+  Chat,
+  Notifications
+} from "@material-ui/icons";
+import userImg from "../../assets/images/user-image.png";
+import Searchbar_input from "../searchbar/searchbar.jsx";
 
 export default function Topbar() {
-    return (
-        <div className="topbarContainer">
-            <div className="topbarLogo">
-                <img src="/images/logo-white.png" alt="logo" />
-                <p className="logoName">Groupomania</p>
-            </div>
-            <div className="topbarLeft">
-              
-            </div>
-            <div className="topbarCenter">
-                <div className="searchbar">
-                    <Search/>
-                    <input placeholder="Rechercher" className="searchInput" />
-                </div>
-            </div>
-            <div className="topbarRight">
-                <div className="topbarLinks">
-                    <span className="topbarLink">Homepage</span>
-                    <span className="topbarLink">Timeline</span>
-                </div>
-                <div className="topbarIcons">
-                    <div className="topbarIconItem">
-                        <Person/>
-                        <span className="topbarIconBadge">1</span>
-                    </div>
-
-                    <div className="topbarIconItem">
-                        <Chat/>
-                        <span className="topbarIconBadge">1</span>
-                    </div>
-
-                    <div className="topbarIconItem">
-                        <Notifications/>
-                        <span className="topbarIconBadge">1</span>
-                    </div>
-                </div>
-                <div className="topbarUserItem">
-                        <AccountCircle/>
-                </div>
-                
-            </div>
-            
+  return (
+    <div className="topbarContainer">
+      <div className="topbarLeft">
+        <a href="#">
+          <div className="topbarLogo">
+            <img src="/images/logo-white.png" alt="logo" />
+            <h1 className="logoName">Groupomania</h1>
+          </div>
+        </a>
+      </div>
+      <div className="topbarCenter">
+        <div className="searchbar">
+          <Search className="searchIcon" />
+          <input
+            onClick={Searchbar_input}
+            placeholder="Rechercher"
+            className="searchInput"
+          />
         </div>
-    )
+      </div>
+      <div className="topbarRight">
+        <div className="topbarIcons">
+          <div className="iconBody">
+            <div className="topbarIconItem">
+              <Notifications />
+              <span className="topbarIconBadge">1</span>
+            </div>
+          </div>
+
+          <div className="iconBody">
+            <div className="topbarIconItem">
+              <Chat />
+              <span className="topbarIconBadge ">1</span>
+            </div>
+          </div>
+
+          <div className="iconBody">
+            <div className="userProfile">
+              <img src={userImg} alt="user img" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
