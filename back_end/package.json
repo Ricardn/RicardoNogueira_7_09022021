@@ -1,10 +1,10 @@
 {
-  "name": "back-end",
+  "name": "back_end",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+     "start": "nodemon"
   },
   "author": "",
   "license": "ISC",
@@ -15,7 +15,8 @@
     "express": "^4.17.1",
     "helmet": "^4.6.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.13.3",
+    "mysql2": "^2.3.0",
+    "nodemon": "^2.0.12",
     "path": "^0.12.7",
     "sequelize": "^6.6.5"
   }
