@@ -9,7 +9,7 @@ import userImg from "../../assets/images/user-image.png";
 
 import React from "react";
 import "./feed.scss";
-import NavBar from "../../components/topbar/Topbar";
+import NavBar from "../../components/header/feed/";
 import Footer from "../../components/footer/footer";
 
 export default function Feed() {

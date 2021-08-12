@@ -5,63 +5,49 @@ import character_1 from "../../assets/images/character_1.PNG";
 import character_2 from "../../assets/images/character_2.PNG";
 import character_3 from "../../assets/images/character_3.PNG";
 
+
 import { useHistory } from "react-router-dom";
-
-
-
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Footer from "../../components/footer/footer";
+import Nav from "../../components/header/main/index"
 
+import TextField from "@material-ui/core/TextField";
 
 export default function Home() {
+
+  //Login
+
+
+
   let history = useHistory();
   return (
     <Router>
       <div>
-        <nav>
-          <div className="topbarContainer">
-            <div className="topbarLeft">
-              <div className="logo-container">
-                <a href="#">
-                  <div className="topbarLogo">
-                    <img src="/images/logo-white.png" alt="logo" />
-                    <h1 className="logoName">Groupomania</h1>
-                  </div>
-                </a>
-              </div>
-            </div>
-            <div className="topbarRight">
-              <div className="btn-container">
-                <div className="btn-signup">
-                  <button
-                    onClick={() => {
-                      history.push("/signup");
-                    }}
-                  >
-                    S'inscrire
-                  </button>
-                </div>
-                <div className="btn-login">
-                  <button
-                    onClick={() => {
-                      history.push("/signin");
-                    }}
-                  >
-                    S'identifier
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </nav>
+        <Nav />
+
         <div className="main">
           <div className="main-container">
             <div className="information-container">
               <h2>Bienvenue dans votre communauté professionnelle</h2>
-              <div className="sign-in-Container">
-                <input type="text" placeholder="Email" />
-                <input type="text" placeholder="Mot de Passe" />
+              <div className="input-container">
+                <TextField
+                  className="emailInput"
+                  id="outlined-password-input"
+                  label="Email"
+                  type="email"
+                  variant="outlined"
+                />
+                <TextField
+                  className="passwordInput"
+                  id="outlined-password-input"
+                  label="Password"
+                  type="password"
+                  variant="outlined"
+                />
                 <a href="#">Mot de passe oublié ?</a>
+              </div>
+
+              <div className="sign-in-Container">
                 <button
                   onClick={() => {
                     history.push("/signin");
@@ -129,8 +115,42 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <Footer/>
+        <Footer />
       </div>
     </Router>
   );
 }
+/*<div className="topbarContainer">
+            <div className="topbarLeft">
+              <div className="logo-container">
+                <a href="#">
+                  <div className="topbarLogo">
+                    <img src="/images/logo-white.png" alt="logo" />
+                    <h1 className="logoName">Groupomania</h1>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div className="topbarRight">
+              <div className="btn-container">
+                <div className="btn-signup">
+                  <button
+                    onClick={() => {
+                      history.push("/signup");
+                    }}
+                  >
+                    S'inscrire
+                  </button>
+                </div>
+                <div className="btn-login">
+                  <button
+                    onClick={() => {
+                      history.push("/signin");
+                    }}
+                  >
+                    S'identifier
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>*/
