@@ -1,0 +1,18 @@
+/* Color Library */
+$color-primary: #0073b6;
+$color-lighter: #eef3f898;
+$color-darker: #eef3f8;
+$color-secondary: white;
+
+.btnSignin {
+  font-weight: 600;
+    height: 40px;
+    width: 100px;
+    border: 1px solid $color-primary;
+    border-radius: 20px;
+    &:hover {
+      cursor: pointer;
+      background-color: $color-primary;
+      color: white;
+    }
+}
