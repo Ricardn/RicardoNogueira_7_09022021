@@ -1,0 +1,80 @@
+/* Color Library */
+$color-primary: #0073b6;
+$color-lighter: #eef3f898;
+$color-darker: #eef3f8;
+$color-secondary: white;
+
+nav {
+  .topbarContainer {
+    display: flex;
+    height: 70px;
+    width: 100%;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background-color: $color-secondary;
+    box-shadow: 0px 10px 13px -7px #0000004f;
+
+    /* Logo */
+    .topbarLeft {
+      flex: 4;
+      margin-left: 300px;
+      .logo-container {
+        max-width: 200px;
+        .topbarLogo {
+          display: flex;
+          width: 50px;
+          height: 50px;
+          background: $color-primary;
+          border-radius: 10px;
+          img {
+            margin: 5px;
+            height: 40px;
+            width: 40px;
+          }
+          h1 {
+            margin-left: 10px;
+            margin-top: 10px;
+            font-weight: 600;
+            color: black;
+          }
+          &:hover {
+            cursor: pointer;
+            background: $color-primary;
+            width: 240px;
+            transition-duration: 200ms;
+            h1 {
+              color: white;
+            }
+          }
+        }
+      }
+    }
+  }
+  .btnSignup {
+    margin-right: 40px;
+  }
+  
+   .btnSignin {
+    margin-right: 100px;
+  }
+}
+
+/* Color Library */
+$color-primary: #0073b6;
+$color-lighter: #eef3f898;
+$color-darker: #eef3f8;
+$color-secondary: white;
+
+.btnValidation {
+  font-weight: 600;
+    height: 40px;
+    width: 100px;
+    border: 1px solid $color-primary;
+    border-radius: 20px;
+    &:hover {
+      cursor: pointer;
+      background-color: $color-primary;
+      color: white;
+    }
+}

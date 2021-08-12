@@ -1,0 +1,22 @@
+/* Color Library */
+$color-primary: #0073b6;
+$color-lighter: #eef3f898;
+$color-darker: #eef3f8;
+$color-secondary: white;
+
+/* Nav container */
+
+.return {
+  margin-right: 100px;
+  max-height: 50px;
+  &:hover {
+    font-weight: 600;
+    cursor: pointer;
+    background-color: $color-darker;
+    color: white;
+  }
+  .returnIcon {
+      
+      margin-top: 5px;
+  }
+}
