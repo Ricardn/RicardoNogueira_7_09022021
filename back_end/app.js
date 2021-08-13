@@ -10,6 +10,7 @@ const db = require('./models/index');
 
 
 const userRoutes = require('./routes/user');
+const postRoutes = require('./routes/posts')
 
 
 const app = express();
@@ -31,7 +32,7 @@ app.use(express.json());
 
 // simple route
 app.use("/api", userRoutes);
-//app.use("/api/posts", postRoutes);
+app.use("/api/posts", postRoutes);
 //app.use("/api/comments", commentRoutes);
 
 //Set the images path.
