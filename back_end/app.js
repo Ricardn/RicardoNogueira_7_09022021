@@ -18,7 +18,7 @@ const app = express();
 app.use(helmet());
 
 db.sequelize
-  .sync()
+  .sync(/*{ force: true }*/)
   .then((result) => {
     console.log(result);
   })
