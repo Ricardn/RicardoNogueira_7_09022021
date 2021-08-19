@@ -7,19 +7,19 @@ import {
 } from "@material-ui/icons";
 import userImg from "../../assets/images/user-image.png";
 
-import React from "react";
+import React, { useEffect } from "react";
 import "./feed.scss";
 import NavBar from "../../components/header/feed/";
 import Footer from "../../components/footer/footer";
 
 export default function Feed() {
+
+
   return (
     <div>
       <NavBar />
       <div className="feed-container">
-        <div className="container-left">
-          <h1>test</h1>
-        </div>
+        <div className="container-left"></div>
         <div className="container-middle">
           <div className="feed-container">
             <div className="input-container">

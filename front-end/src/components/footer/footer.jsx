@@ -13,7 +13,7 @@ export default function Footer() {
           </div>
           <ul>
             <li>
-              <h3>Titre</h3>
+              <h3>À propos</h3>
             </li>
             <li>
               <h3>Titre</h3>
@@ -24,8 +24,9 @@ export default function Footer() {
           </ul>
           <ul>
             <li>test</li>
-            <li>test</li>
-            <li>test</li>
+            <li>Conditions d’utilisation</li>
+            <li>Politique de Confidentialité</li>
+            <li>Politique relative aux cookies</li>
           </ul>
           <ul>
             <li>test</li>

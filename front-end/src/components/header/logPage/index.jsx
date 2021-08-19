@@ -8,7 +8,6 @@ import Button from "../../../components/buttons/btn-return"
 
 export default function navbar() {
   return (
-    <Router>
       <nav>
         <div className="topbarContainer">
           <div className="topbarLeft">
@@ -28,6 +27,5 @@ export default function navbar() {
           </div>
         </div>
       </nav>
-    </Router>
   );
 }
