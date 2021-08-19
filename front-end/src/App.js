@@ -1,5 +1,8 @@
 import React from "react";
 
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import Home from "./pages/home/Home.jsx";
 import SignIn from "./pages/sign-in/sign-in.jsx";
 import SignUp from "./pages/sign-up/sign-up.jsx";
@@ -13,11 +16,12 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route exact path="/feed" component={Feed} />
-        <Route exact path="/signin" component={SignIn} />
-        <Route exact path="/signup" component={SignUp} />
+        <Route path="/feed" component={Feed} />
+        <Route path="/signin" component={SignIn} />
+        <Route path="/signup" component={SignUp} />
         <Route exact path="/" component={Home} />
       </Switch>
+      <ToastContainer autoClose={3000} />
     </Router>
   );
 }
