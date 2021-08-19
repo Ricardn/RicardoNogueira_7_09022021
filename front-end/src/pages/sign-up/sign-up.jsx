@@ -1,109 +1,153 @@
-import { React, useState, useEffect } from "react";
-import Nav from "../../components/header/logPage/index";
-import TextField from "@material-ui/core/TextField";
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormControl from "@material-ui/core/FormControl";
-import FormLabel from "@material-ui/core/FormLabel";
-import { styled } from "@material-ui/core/styles";
-import Button from "../../components/buttons/btn-validation/index";
-import { Link } from "@material-ui/core";
-import './style.scss';
+import { React } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
-async function registerUser(credentials) {
-  return fetch("http://localhost:3000/signup", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(credentials),
-  }).then((data) => data.json());
+import TextField from "@material-ui/core/TextField";
+import ErrorIcon from "@material-ui/icons/Error";
+import Nav from "../../components/header/logPage/index";
+import "./style.scss";
+import "react-toastify/dist/ReactToastify.min.css";
+
+function getResponse(response) {
+  const notifySuccess = () => toast.success("Compte correctement enregistré !");
+  const notifyError = () =>
+    toast.error("Votre compte n'a pas pu être enregistré !");
+
+  if (response.status === 201) {
+    notifySuccess();
+    setTimeout(function () {
+      window.location.href = "/";
+    }, 4000);
+  } else {
+    notifyError();
+  }
+  console.log(response.status);
 }
 
 export default function SignUp() {
   //Signup
-  const [userGenderReg, setuserGenderReg] = useState("");
-  const [userlastNameReg, setuserLastnameReg] = useState("");
-  const [userfirstNameReg, setUserNameReg] = useState("");
-  const [userEmailReg, setUserEmailReg] = useState("");
-  const [userPasswordReg, setUserPasswordReg] = useState("");
 
-  const register = () => {
-    console.log(userlastNameReg);
-  }
-
-
-
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   return (
     <div>
       <Nav />
       <div className="main">
-        <div className="information-container">
-          <h2>Créer votre compte Groupomania,</h2>
-          <h3>n'a jamais été aussi simple et rapide.</h3>
-          <div className="input-container">
-            <form>
-              <div className="form-container">
-                <FormControl component="fieldset">
-                  <FormLabel component="legend">Genre</FormLabel>
-                  <RadioGroup
-                    row
-                    aria-label="gender"
-                    name="row-radio-buttons-group"
-                  >
-                    <FormControlLabel
-                      value="female"
-                      control={<Radio />}
-                      label="Femme"
-                    />
-                    <FormControlLabel
-                      value="male"
-                      control={<Radio />}
-                      label="Homme"
-                    />
-                    <FormControlLabel
-                      value="other"
-                      control={<Radio />}
-                      label="Autre"
-                    />
-                  </RadioGroup>
-                </FormControl>
-              </div>
+        <div className="title-container">
+          <h2>Créez votre compte Groupomania</h2>
+        </div>
+        <div className="input-container">
+          <form
+            onSubmit={handleSubmit((data) => {
+              fetch("http://localhost:3000/api/auth/signup", {
+                method: "POST",
+                headers: {
+                  Accept: "application/json",
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+              }).then((response) => {
+                getResponse(response);
+                return response
+                  .json()
+                  .then((data) => {
+                    console.log(data);
+                    return data;
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                  });
+              });
+            })}
+          >
+            <div className="input">
               <TextField
-                className="surnameInput"
-                id="outlined-surname-input"
-                label="Nom"
+                className="lastName"
+                id="lastName"
+                label="Nom*"
                 type="text"
                 variant="outlined"
+                margin="normal"
+                {...register("lastName", {
+                  required: "Ce champ est obligatoire",
+                })}
               />
-
+              {errors.lastName && (
+                <p>
+                  <ErrorIcon />
+                  {errors.lastName.message}
+                </p>
+              )}
+            </div>
+            <div className="input">
               <TextField
-                className="nameInput"
-                id="outlined-name-input"
-                label="Prénom"
+                className="firstName"
+                id="firstName"
+                label="Prénom*"
                 type="text"
                 variant="outlined"
+                margin="normal"
+                {...register("firstName", {
+                  required: "Ce champ est obligatoire",
+                })}
               />
-
+              {errors.firstName && (
+                <p>
+                  <ErrorIcon />
+                  {errors.firstName.message}
+                </p>
+              )}
+            </div>
+            <div className="input">
               <TextField
-                className="emailInput"
-                id="outlined-email-input"
-                label="Email"
+                className="email"
+                id="email"
+                label="Email*"
                 type="email"
                 variant="outlined"
+                margin="normal"
+                {...register("email", {
+                  required: "Ce champ est obligatoire",
+                })}
               />
+              {errors.email && (
+                <p>
+                  <ErrorIcon />
+                  {errors.email.message}
+                </p>
+              )}
+            </div>
+            <div className="input">
               <TextField
-                className="passInput"
-                id="outlined-password-input"
-                label="Password"
+                className="password"
+                id="password"
+                label="Mot de Passe*"
                 type="password"
                 variant="outlined"
+                margin="normal"
+                {...register("password", {
+                  required: "Ce champ est obligatoire",
+                  minLength: {
+                    value: 8,
+                    message:
+                      "Le mot de passe doit contenir au moins 8 caractères",
+                  },
+                })}
               />
-              <Link onClick={() => console.log("Click")}>
-                <Button />
-              </Link>
-            </form>
-          </div>
+              {errors.password && (
+                <p>
+                  <ErrorIcon />
+                  {errors.password.message}
+                </p>
+              )}
+            </div>
+
+            <button type="submit">Valider</button>
+          </form>
         </div>
       </div>
     </div>
