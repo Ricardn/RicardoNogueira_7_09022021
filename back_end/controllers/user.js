@@ -1,5 +1,6 @@
 const db = require("../models/index");
 const User = db.User;
+const op = db.Sequelize.op;
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -10,7 +11,6 @@ exports.signup = (req, res, next) => {
     .then((hash) => {
       const user = {
         password: hash,
-        gender: req.body.gender,
         lastName: req.body.lastName,
         firstName: req.body.firstName,
         email: req.body.email,
@@ -19,11 +19,9 @@ exports.signup = (req, res, next) => {
       User.create(user)
         .then(() => res.status(201).json({ message: "User Account created !" }))
         .catch((error) =>
-          res
-            .status(500)
-            .send({
-              message: error.message + "Impossible to create User Account",
-            })
+          res.status(500).send({
+            message: error.message + "Impossible to create User Account",
+          })
         );
     })
     .catch((error) => res.status(500).json({ error }));
