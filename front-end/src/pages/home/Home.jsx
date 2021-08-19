@@ -1,68 +1,136 @@
 import React from "react";
-import "./Home.scss";
+import { useForm } from "react-hook-form";
+import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
+
+import TextField from "@material-ui/core/TextField";
+import ErrorIcon from "@material-ui/icons/Error";
+
+import Footer from "../../components/footer/footer";
+import Nav from "../../components/header/main/index";
 import Animation from "../../assets/images/animation.PNG";
 import character_1 from "../../assets/images/character_1.PNG";
 import character_2 from "../../assets/images/character_2.PNG";
 import character_3 from "../../assets/images/character_3.PNG";
+import "react-toastify/dist/ReactToastify.min.css";
+import "./style.scss";
 
+function getResponse(response) {
+  const notifySuccess = () => toast.success("Connexion en cours !");
+  const notifyError = () => toast.error("Une erreur est survenu !");
+  const notifyErrorPassword = () => toast.error("Mot de passe incorrecte !");
 
-import { useHistory } from "react-router-dom";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Footer from "../../components/footer/footer";
-import Nav from "../../components/header/main/index"
+  if (response.status === 200) {
+    notifySuccess();
+    setTimeout(function () {
+      window.location.href = "/feed";
+    }, 3500);
+  } else {
+    if (response.status === 401) {
+      notifyErrorPassword();
+    } else {
+      notifyError();
+    }
+  }
+  console.log(response.status);
+}
 
-import TextField from "@material-ui/core/TextField";
 
 export default function Home() {
-
   //Login
-
-
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   let history = useHistory();
   return (
-    <Router>
-      <div>
-        <Nav />
+    <div>
+      <Nav />
+      <div className="main">
+        <div className="main-container">
+          <div className="information-container">
+            <h2>Bienvenue dans votre communauté professionnelle</h2>
+            <div className="input-container">
+              <form
+                onSubmit={handleSubmit((data) => {
+                  fetch("http://localhost:3000/api/auth/signin", {
+                    method: "POST",
+                    headers: {
+                      Authorization:localStorage.getItem('jwtToken'),
+                      Accept: "application/json",
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(data),
+                  }).then((response) => {
+                    getResponse(response);
+                    return response
+                      .json()
+                      .then((data) => {
+                        localStorage.setItem('token', data.token);
+                        console.log(data.token);
+                        return data;
+                      })
+                      .catch((err) => {
+                        console.log(err);
+                      });
+                  });
+                })}
+              >
+                <div className="input">
+                  <TextField
+                    className="email"
+                    id="email"
+                    label="Email*"
+                    type="email"
+                    variant="outlined"
+                    margin="normal"
+                    {...register("email", {
+                      required: "Ce champ est obligatoire",
+                    })}
+                  />
+                  {errors.email && (
+                    <p>
+                      <ErrorIcon />
+                      {errors.email.message}
+                    </p>
+                  )}
+                </div>
+                <div className="input">
+                  <TextField
+                    className="password"
+                    id="password"
+                    label="Mot de Passe*"
+                    type="password"
+                    variant="outlined"
+                    margin="normal"
+                    {...register("password", {
+                      required: "Ce champ est obligatoire",
+                      minLength: {
+                        value: 8,
+                        message:
+                          "Le mot de passe doit contenir au moins 8 caractères",
+                      },
+                    })}
+                  />
+                  {errors.password && (
+                    <p>
+                      <ErrorIcon />
+                      {errors.password.message}
+                    </p>
+                  )}
+                </div>
 
-        <div className="main">
-          <div className="main-container">
-            <div className="information-container">
-              <h2>Bienvenue dans votre communauté professionnelle</h2>
-              <div className="input-container">
-                <TextField
-                  className="emailInput"
-                  id="outlined-password-input"
-                  label="Email"
-                  type="email"
-                  variant="outlined"
-                />
-                <TextField
-                  className="passwordInput"
-                  id="outlined-password-input"
-                  label="Password"
-                  type="password"
-                  variant="outlined"
-                />
-                <a href="#">Mot de passe oublié ?</a>
-              </div>
-
-              <div className="sign-in-Container">
-                <button
-                  onClick={() => {
-                    history.push("/signin");
-                  }}
-                >
-                  S'identifier
-                </button>
-              </div>
+                <button type="submit">Valider</button>
+              </form>
             </div>
-
             <div className="image-container">
               <img src={Animation} alt="test" />
             </div>
           </div>
         </div>
+
         <div className="banner-container">
           <div className="timeline">
             <span className="dot-1"></span>
@@ -115,42 +183,8 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <Footer />
       </div>
-    </Router>
+      <Footer />
+    </div>
   );
 }
-/*<div className="topbarContainer">
-            <div className="topbarLeft">
-              <div className="logo-container">
-                <a href="#">
-                  <div className="topbarLogo">
-                    <img src="/images/logo-white.png" alt="logo" />
-                    <h1 className="logoName">Groupomania</h1>
-                  </div>
-                </a>
-              </div>
-            </div>
-            <div className="topbarRight">
-              <div className="btn-container">
-                <div className="btn-signup">
-                  <button
-                    onClick={() => {
-                      history.push("/signup");
-                    }}
-                  >
-                    S'inscrire
-                  </button>
-                </div>
-                <div className="btn-login">
-                  <button
-                    onClick={() => {
-                      history.push("/signin");
-                    }}
-                  >
-                    S'identifier
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>*/
