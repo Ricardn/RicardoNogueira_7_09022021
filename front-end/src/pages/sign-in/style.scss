@@ -6,20 +6,18 @@ $color-secondary: white;
 
 /* Nav container */
 
-
-
 .main {
   display: flex;
   margin-top: 100px;
   justify-content: center;
   width: 100%;
+  
   height: 100%;
 
   .information-container {
     margin-top: 20px;
     display: flex;
-    flex-direction: column;
-
+ 
     h2 {
       margin-left: 12px;
       font-weight: 200;
@@ -53,12 +51,11 @@ $color-secondary: white;
       margin-top: 40px;
       max-width: 500px;
       button {
-        border: 2px solid  #0073b6;
+        border: 2px solid #0073b6;
         height: 60px;
-         width: 500px;
+        width: 500px;
         font-size: 20px;
       }
-      
     }
   }
 }
