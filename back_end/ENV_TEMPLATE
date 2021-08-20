@@ -1,0 +1,8 @@
+#Secret Token
+TOKEN=""
+ 
+#Conection do DataBase
+HOST=""
+USER=""
+PASSWORD=""
+DB=""
