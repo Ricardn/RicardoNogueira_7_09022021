@@ -14,7 +14,6 @@ import Footer from "../../components/footer/footer";
 
 export default function Feed() {
 
-
   return (
     <div>
       <NavBar />

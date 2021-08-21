@@ -35,7 +35,6 @@ function getResponse(response) {
   console.log(response.status);
 }
 
-
 export default function Home() {
   //Login
   const {
@@ -58,7 +57,7 @@ export default function Home() {
                   fetch("http://localhost:3000/api/auth/signin", {
                     method: "POST",
                     headers: {
-                      Authorization:localStorage.getItem('jwtToken'),
+                      Authorization: localStorage.getItem("jwtToken"),
                       Accept: "application/json",
                       "Content-Type": "application/json",
                     },
@@ -68,7 +67,7 @@ export default function Home() {
                     return response
                       .json()
                       .then((data) => {
-                        localStorage.setItem('token', data.token);
+                        localStorage.setItem("token", data.token);
                         console.log(data.token);
                         return data;
                       })

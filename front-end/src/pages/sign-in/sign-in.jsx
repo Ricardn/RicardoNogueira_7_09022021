@@ -48,6 +48,7 @@ export default function SignIn() {
               fetch("http://localhost:3000/api/auth/signin", {
                 method: "POST",
                 headers: {
+                  Authorization: localStorage.getItem("jwtToken"),
                   Accept: "application/json",
                   "Content-Type": "application/json",
                 },
@@ -57,7 +58,8 @@ export default function SignIn() {
                 return response
                   .json()
                   .then((data) => {
-                    console.log(data);
+                    localStorage.setItem("token", data.token);
+                    console.log(data.token);
                     return data;
                   })
                   .catch((err) => {

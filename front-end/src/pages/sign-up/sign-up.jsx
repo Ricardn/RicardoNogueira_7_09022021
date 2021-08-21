@@ -17,7 +17,7 @@ function getResponse(response) {
     notifySuccess();
     setTimeout(function () {
       window.location.href = "/";
-    }, 4000);
+    }, 3500);
   } else {
     notifyError();
   }
