@@ -54,27 +54,41 @@ nav {
   .btnSignup {
     margin-right: 40px;
   }
-  
-   .btnSignin {
+
+  .btnSignin {
     margin-right: 100px;
+  }
+  .topbarRight {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    max-height: 50px;
+    margin-right: 200px;
+    .notifications{
+      display: flex;
+    }
+    .user-profile {
+      display: flex;
+      flex-direction: row;
+      max-height: 50px;
+
+      .UserName {
+        margin-left: 12px;
+        margin-top: 10px;
+      }
+    }
   }
 }
 
-/* Color Library */
-$color-primary: #0073b6;
-$color-lighter: #eef3f898;
-$color-darker: #eef3f8;
-$color-secondary: white;
-
 .btnValidation {
   font-weight: 600;
-    height: 40px;
-    width: 100px;
-    border: 1px solid $color-primary;
-    border-radius: 20px;
-    &:hover {
-      cursor: pointer;
-      background-color: $color-primary;
-      color: white;
-    }
+  height: 40px;
+  width: 100px;
+  border: 1px solid $color-primary;
+  border-radius: 20px;
+  &:hover {
+    cursor: pointer;
+    background-color: $color-primary;
+    color: white;
+  }
 }
