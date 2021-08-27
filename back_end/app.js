@@ -4,14 +4,12 @@ const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
 const path = require("path");
-const mysql = require('mysql2');
+const mysql = require("mysql2");
 
-const db = require('./models/index');
+const db = require("./models/index");
 
-
-const userRoutes = require('./routes/user');
-const postRoutes = require('./routes/posts')
-
+const userRoutes = require("./routes/user");
+const postRoutes = require("./routes/posts");
 
 const app = express();
 
@@ -25,7 +23,6 @@ db.sequelize
   .catch((error) => {
     console.log(error);
   });
-
 
 app.use(cors());
 app.use(express.json());

@@ -19,8 +19,17 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.Post = require("./Posts.model")(sequelize, Sequelize);
 db.User = require("./Users.model")(sequelize, Sequelize);
+db.Post = require("./Posts.model")(sequelize, Sequelize);
 db.Comment = require("./Comments.model")(sequelize, Sequelize);
+
+//Relations
+/*
+db.User.hasMany(db.Post);
+db.Comment.belongsTo(db.Post);
+db.Post.hasMany(db.Comment);
+db.Post.belongsTo(db.User);
+*/
+
 
 module.exports = db;

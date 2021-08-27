@@ -38,8 +38,8 @@ exports.signin = (req, res, next) => {
             return res.status(401).send({ error: "Wrong Password !" });
           }
           res.status(200).json({
-            userId: user.id,
-            token: jwt.sign({ userId: user.id }, process.env.TOKEN, {
+            id: user.id,
+            token: jwt.sign({ id: user.id }, process.env.TOKEN, {
               expiresIn: "24h",
             }),
           });
