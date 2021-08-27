@@ -1,18 +1,37 @@
-import {
-  Gif,
-  PhotoCamera,
-  FormatListBulleted,
-  Event,
-  Public,
-} from "@material-ui/icons";
-import userImg from "../../assets/images/user-image.png";
+import React, { useState, useEffect } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 
-import React, { useEffect } from "react";
-import "./feed.scss";
+import { Gif } from "@material-ui/icons";
+
+import PhotoLibraryIcon from "@material-ui/icons/PhotoLibrary";
+import VideoLibraryIcon from "@material-ui/icons/VideoLibrary";
+import PictureAsPdfIcon from "@material-ui/icons/PictureAsPdf";
+import Avatar from "@material-ui/core/Avatar";
+import SimpleDialogDemo from "../../components/dialog/dialog";
+import Button from "@material-ui/core/Button";
+
+import PostContainer from "../../components/post";
+
 import NavBar from "../../components/header/feed/";
 import Footer from "../../components/footer/footer";
+import { GetUser } from "../../components/functions";
+
+import "./feed.scss";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    "& > *": {
+      margin: theme.spacing(1),
+    },
+  },
+  input: {
+    display: "none",
+  },
+}));
 
 export default function Feed() {
+  GetUser();
+  const classes = useStyles();
 
   return (
     <div>
@@ -23,47 +42,80 @@ export default function Feed() {
           <div className="feed-container">
             <div className="input-container">
               <div className="input">
-                <img src={userImg} alt="Photo de Profil" />
-                <button>Quoi de neuf, UserName ?</button>
-              </div>
-              <div className="share">
-                <button>
-                  <PhotoCamera />
-                  Photo
-                </button>
-                <button>
-                  <Gif />
-                  Gif
-                </button>
-                <button>
-                  <FormatListBulleted />
-                  Sondage
-                </button>
-                <button>
-                  <Event />
-                  Événement
-                </button>
-              </div>
-            </div>
-            <div className="post-container">
-              <div className="input">
-                <div className="user">
-                  <img src={userImg} alt="Photo de Profil" />
-                  <div className="user-information">
-                    <a href="#">Ricardo Nogueira</a>
-                    <span>
-                      Il y a 58min <Public />
+                <div className="user-container">
+                  <Avatar className="userAvatar">
+                    <span id="Image">
+                      {localStorage.getItem("UserInitials")}
                     </span>
-                  </div>
+                  </Avatar>
                 </div>
-                <div className="post">
-                  <iframe
-                    src="https://giphy.com/embed/cPNXOm7ln8HwK7UcbV"
-                    class="giphy-embed"
-                  ></iframe>
+                <SimpleDialogDemo className="dialog" />
+              </div>
+
+              <div className="button-container">
+                <div className="btn">
+                  <input
+                    accept="image/*"
+                    className={classes.input}
+                    id="contained-button-file"
+                    multiple
+                    type="file"
+                  />
+                  <label htmlFor="contained-button-file">
+                    <Button variant="contained" size="medium" component="span">
+                      <PhotoLibraryIcon />
+                      Photo
+                    </Button>
+                  </label>
+                </div>
+                <div className="btn">
+                  <input
+                    accept="video/*"
+                    className={classes.input}
+                    id="contained-button-file"
+                    multiple
+                    type="file"
+                  />
+                  <label htmlFor="contained-button-file">
+                    <Button variant="contained" size="medium" component="span">
+                      <VideoLibraryIcon />
+                      Vidéo
+                    </Button>
+                  </label>
+                </div>
+                <div className="btn">
+                  <input
+                    accept=".pdf"
+                    className={classes.input}
+                    id="contained-button-file"
+                    multiple
+                    type="file"
+                  />
+                  <label htmlFor="contained-button-file">
+                    <Button variant="contained" size="medium" component="span">
+                      <PictureAsPdfIcon />
+                      Pdf
+                    </Button>
+                  </label>
+                </div>
+                <div className="btn">
+                  <input
+                    accept="image/*"
+                    className={classes.input}
+                    id="contained-button-file"
+                    multiple
+                    type="file"
+                  />
+                  <label htmlFor="contained-button-file">
+                    <Button variant="contained" size="medium" component="span">
+                      <Gif />
+                      Gif
+                    </Button>
+                  </label>
                 </div>
               </div>
             </div>
+            <PostContainer />
           </div>
         </div>
         <div className="container-right"></div>

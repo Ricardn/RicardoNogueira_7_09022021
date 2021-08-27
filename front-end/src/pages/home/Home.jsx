@@ -2,6 +2,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
+import { GetUser } from "../../components/functions";
+
 
 import TextField from "@material-ui/core/TextField";
 import ErrorIcon from "@material-ui/icons/Error";
@@ -25,6 +27,7 @@ function getResponse(response) {
     setTimeout(function () {
       window.location.href = "/feed";
     }, 3500);
+ 
   } else {
     if (response.status === 401) {
       notifyErrorPassword();
@@ -51,7 +54,7 @@ export default function Home() {
         <div className="main-container">
           <div className="information-container">
             <h2>Bienvenue dans votre communauté professionnelle</h2>
-            <div className="input-container">
+            <div className="Input-container">
               <form
                 onSubmit={handleSubmit((data) => {
                   fetch("http://localhost:3000/api/auth/signin", {
