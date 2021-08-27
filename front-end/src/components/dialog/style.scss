@@ -1,0 +1,45 @@
+form {
+  .title-container {
+    height: 60px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.192);
+  }
+
+  .input-container {
+    .User-container {
+      display: flex;
+      margin-left: 8px;
+      transform: translateY(10px);
+      .UserName {
+        margin: 10px;
+      }
+    }
+    .text-container {
+      transform: translateY(30px);
+    }
+  }
+  .btn-hastag {
+    margin-bottom: 20px;
+    transform: translateY(160px);
+    margin-left: 8px;
+    font-weight: 600;
+  }
+
+  .btn-container {
+    display: flex;
+    transform: translateY(60px);
+    margin-right: 10px;
+    button {
+      text-transform: capitalize;
+    }
+
+    display: flex;
+    .btn {
+      margin-right: 20px;
+    }
+    .btn-validation {
+      .sendIcon {
+        margin-left: 6px;
+      }
+    }
+  }
+}
