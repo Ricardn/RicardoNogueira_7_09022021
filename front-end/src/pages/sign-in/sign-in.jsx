@@ -39,10 +39,10 @@ export default function SignIn() {
     <div>
       <Nav />
       <div className="main">
-        <div className="title-container">
+        <div className="Title-container">
           <h2>Nous sommes ravis de vous revoir</h2>
         </div>
-        <div className="input-container">
+        <div className="Input-container">
           <form
             onSubmit={handleSubmit((data) => {
               fetch("http://localhost:3000/api/auth/signin", {
