@@ -1,10 +1,10 @@
 require("dotenv").config();
 
 module.exports = {
-  HOST: process.env.HOST,
-  USER: process.env.USER,
-  PASSWORD: process.env.PASSWORD,
-  DB: process.env.DB,
+  DB_HOST: process.env.HOST,
+  DB_USER: process.env.USER,
+  DB_PASSWORD: process.env.PASSWORD,
+  DB_NAME: process.env.DB,
   dialect: "mysql",
   //used for Sequelize connection pool configuration
   pool: {
