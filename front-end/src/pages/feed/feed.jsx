@@ -15,8 +15,10 @@ import PostContainer from "../../components/post";
 import NavBar from "../../components/header/feed/";
 import Footer from "../../components/footer/footer";
 import { GetUser } from "../../components/functions";
+import BasicCard from "../../components/card";
 
 import "./feed.scss";
+import { TextField } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,7 +39,11 @@ export default function Feed() {
     <div>
       <NavBar />
       <div className="feed-container">
-        <div className="container-left"></div>
+        <div className="container-left">
+          <div className="card-container">
+            <BasicCard />
+          </div>
+        </div>
         <div className="container-middle">
           <div className="feed-container">
             <div className="input-container">

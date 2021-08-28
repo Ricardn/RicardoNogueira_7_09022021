@@ -6,9 +6,23 @@ $color-secondary: white;
 
 .feed-container {
   display: flex;
+
+  .container-left {
+    display: flex;
+    flex: 1;
+
+    justify-content: center;
+    .card-container {
+      margin-top: 40px;
+    }
+  }
+  .container-right {
+    display: flex;
+    flex: 1;
+  }
   .container-middle {
     display: flex;
-    flex: 4;
+    flex: 1;
     justify-content: center;
 
     .feed-container {

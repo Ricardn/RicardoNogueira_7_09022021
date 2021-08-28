@@ -94,6 +94,7 @@ export default function CustomizedDialogs() {
   const classes = useStyles();
 
   const {
+    register,
     handleSubmit,
     formState: { errors },
   } = useForm();
@@ -108,7 +109,28 @@ export default function CustomizedDialogs() {
         aria-labelledby="customized-dialog-title"
         open={open}
       >
-        <form>
+        <form
+          onSubmit={handleSubmit((data) => {
+            fetch("http://localhost:3000/", {
+              method: "POST",
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(data),
+            }).then((response) => {
+              return response
+                .json()
+                .then((data) => {
+                  console.log(data);
+                  return data;
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
+            });
+          })}
+        >
           <div className="title-container">
             <DialogTitle id="customized-dialog-title" onClose={handleClose}>
               Créer un Post
@@ -140,6 +162,10 @@ export default function CustomizedDialogs() {
                     type="text"
                     rows={6}
                     multiline
+                    required
+                    {...register("content", {
+                      required: "Ce champ est obligatoire",
+                    })}
                   />
                 </Box>
               </MuiDialogContent>

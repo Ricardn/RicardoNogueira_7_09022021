@@ -11,6 +11,8 @@ import Badge from "@material-ui/core/Badge";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import "react-toastify/dist/ReactToastify.min.css";
 
+
+
 export default function navbar() {
 const notifyError = () =>
   toast.error("Vous êtes sur le point de vous déconnécter !");
