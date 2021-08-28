@@ -7,7 +7,7 @@ module.exports = (req, res, next) => {
     //We slipt them and take only yhe second element inside [].
     const token = req.headers.authorization.split(" ")[1];
     //Decode the Token and verify the Token with the secret key of env.token.
-    const decodedToken = jwt.verify(token, process.env.token);
+    const decodedToken = jwt.verify(token, process.env.TOKEN);
     //Get UserId from the decoded Token.
     const userId = decodedToken.userId;
 
