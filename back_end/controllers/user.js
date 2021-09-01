@@ -39,13 +39,17 @@ exports.signin = (req, res, next) => {
           }
           res.status(200).json({
             id: user.id,
-            token: jwt.sign({ 
-              userId: user.id,
-              lastName: user.lastName,
-              firstName: user.firstName, 
-            }, process.env.TOKEN, {
-              expiresIn: "24h",
-            }),
+            lastName: user.lastName,
+            firstName: user.firstName,
+            token: jwt.sign(
+              {
+                userId: user.id,
+              },
+              process.env.TOKEN,
+              {
+                expiresIn: "24h",
+              }
+            ),
           });
         })
         .catch((error) => res.status(500).send({ error }));
