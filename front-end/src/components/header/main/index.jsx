@@ -1,6 +1,8 @@
 import React from "react";
 import "./style.scss";
 import { Link } from "react-router-dom";
+import ButtonGroup from "@material-ui/core/ButtonGroup";
+import { makeStyles } from "@material-ui/core/styles";
 
 import BtnSignup from "../../buttons/btn-square/index";
 import BtnSignin from "../../buttons/btn-signin/index";
@@ -9,26 +11,24 @@ export default function Navbar() {
   return (
     <div>
       <nav>
-        <div className="topbarContainer">
+        <div className="topbarcontainer">
           <div className="topbarLeft">
             <div className="logo-container">
               <Link to="/">
-                <div className="topbarLogo">
+                <div className="topbarlogo">
                   <img src="/images/logo-white.png" alt="logo" />
                   <h1 className="logoName">Groupomania</h1>
                 </div>
               </Link>
             </div>
-          </div>
-          <div>
-            <Link to="/signup">
-              <BtnSignup />
-            </Link>
-          </div>
-          <div>
-            <Link to="/signin">
-              <BtnSignin />
-            </Link>
+            <div className="buttonContainer">
+              <Link to="/signup">
+                <BtnSignup />
+              </Link>
+              <Link to="/signin">
+                <BtnSignin />
+              </Link>
+            </div>
           </div>
         </div>
       </nav>

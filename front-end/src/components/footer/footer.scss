@@ -4,18 +4,129 @@ $color-lighter: #eef3f898;
 $color-darker: #eef3f8;
 $color-secondary: white;
 
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width: 414px) {
+  footer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #f8faff;
+    text-align: center;
+    margin-top: 60px;
+    .container-footer {
+      display: flex;
+      flex-direction: column;
+      margin: auto;
+
+      padding: 40px;
+      .footerLogo {
+        display: flex;
+
+        width: 50px;
+        height: 50px;
+        background: $color-primary;
+        border-radius: 10px;
+        img {
+          margin: 5px;
+          height: 40px;
+          width: 40px;
+        }
+        h1 {
+          margin-left: 10px;
+          margin-top: 8px;
+          font-weight: 600;
+          color: black;
+        }
+      }
+      ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+
+        list-style: none;
+        text-decoration: none;
+        h3 {
+          margin-top: 16px;
+        }
+        span {
+          &:hover {
+            cursor: pointer;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Smartphones (landscape) ----------- */
+@media screen and (min-width: 320px) and (orientation: landscape) {
+  footer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #f8faff;
+    text-align: center;
+    margin-top: 60px;
+    .container-footer {
+      display: flex;
+      flex-direction: column;
+      margin: auto;
+
+      padding: 40px;
+      .footerLogo {
+        display: flex;
+
+        width: 50px;
+        height: 50px;
+        background: $color-primary;
+        border-radius: 10px;
+        img {
+          margin: 5px;
+          height: 40px;
+          width: 40px;
+        }
+        h1 {
+          margin-left: 10px;
+          margin-top: 8px;
+          font-weight: 600;
+          color: black;
+        }
+      }
+      ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+
+        list-style: none;
+        text-decoration: none;
+        h3 {
+          margin-top: 16px;
+        }
+        span {
+          &:hover {
+            cursor: pointer;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1366px) and (orientation: landscape) {
 footer {
   width: 100%;
-  height: 170px;
+  height: 200px;
   background-color: #f8faff;
   text-align: center;
   
   .container-footer {
-    margin-top: 40px;
     background-color: $color-lighter;
     margin-left: 40px;
     margin-right: 40px;
-    padding: 10px;
+    padding: 30px;
     .footerLogo {
       display: flex;
       width: 50px;
@@ -36,10 +147,12 @@ footer {
     }
     ul {
       display: flex;
+      flex-direction: row;
       justify-content: space-evenly;
-      margin-left: 100px;
       list-style: none;
       text-decoration: none;
     }
   }
 }
+}
+

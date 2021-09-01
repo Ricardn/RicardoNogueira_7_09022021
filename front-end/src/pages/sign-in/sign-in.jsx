@@ -7,33 +7,36 @@ import ErrorIcon from "@material-ui/icons/Error";
 
 import "./style.scss";
 import Nav from "../../components/header/logPage/index";
-
-function getResponse(response) {
-  const notifySuccess = () => toast.success("Connexion en cours !");
-  const notifyError = () => toast.error("Une erreur est survenu !");
-  const notifyErrorPassword = () => toast.error("Mot de passe incorrecte !");
-
-  if (response.status === 200) {
-    notifySuccess();
-    setTimeout(function () {
-      window.location.href = "/feed";
-    }, 3500);
-  } else {
-    if (response.status === 401) {
-      notifyErrorPassword();
-    } else {
-      notifyError();
-    }
-  }
-  console.log(response.status);
-}
+import useUserStore from "../../store/user";
+import authService from "../../services/auth";
 
 export default function SignIn() {
+  const signIn = useUserStore((state) => state.signIn);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  function handleConnection(response) {
+    const notifySuccess = () => toast.success("Connexion en cours !");
+    const notifyError = () => toast.error("Une erreur est survenu !");
+    const notifyErrorPassword = () => toast.error("Mot de passe incorrecte !");
+
+    if (response.status === 200) {
+      notifySuccess();
+      setTimeout(function () {
+        window.location.href = "/feed";
+      }, 3500);
+    } else {
+      if (response.status === 401) {
+        notifyErrorPassword();
+      } else {
+        notifyError();
+      }
+    }
+    console.log(response.status);
+  }
 
   return (
     <div>
@@ -45,26 +48,8 @@ export default function SignIn() {
         <div className="Input-container">
           <form
             onSubmit={handleSubmit((data) => {
-              fetch("http://localhost:3000/api/auth/signin", {
-                method: "POST",
-                headers: {
-                  Authorization: localStorage.getItem("jwtToken"),
-                  Accept: "application/json",
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify(data),
-              }).then((response) => {
-                getResponse(response);
-                return response
-                  .json()
-                  .then((data) => {
-                    localStorage.setItem("token", data.token);
-                    console.log(data.token);
-                    return data;
-                  })
-                  .catch((err) => {
-                    console.log(err);
-                  });
+              signIn(data).then((response) => {
+                handleConnection(response);
               });
             })}
           >

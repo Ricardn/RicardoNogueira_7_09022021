@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { Gif } from "@material-ui/icons";
@@ -10,15 +10,17 @@ import Avatar from "@material-ui/core/Avatar";
 import SimpleDialogDemo from "../../components/dialog/dialog";
 import Button from "@material-ui/core/Button";
 
-import PostContainer from "../../components/post";
+import PostList from "../../components/post/PostList";
 
 import NavBar from "../../components/header/feed/";
 import Footer from "../../components/footer/footer";
-import { GetUser } from "../../components/functions";
-import BasicCard from "../../components/card";
+import { UserCard } from "../../components/card";
 
 import "./feed.scss";
-import { TextField } from "@material-ui/core";
+
+import useUserStore from "../../store/user";
+import usePostStore from "../../store/post";
+import transformUser from "../../utils/transformUser";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,7 +34,22 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Feed() {
-  GetUser();
+  // https://github.com/pmndrs/zustand#then-bind-your-components-and-thats-it
+  const user = useUserStore((state) => state.user);
+
+  const userData = transformUser(user);
+
+  const postsList = usePostStore((state) => state.postsList);
+  const fetchPosts = usePostStore((state) => state.fetchPosts);
+
+  // use effect with empty dependency array
+  // will trigger only once at component mount
+  useEffect(() => {
+    if (fetchPosts) {
+      fetchPosts();
+    }
+  }, [fetchPosts]);
+
   const classes = useStyles();
 
   return (
@@ -41,7 +58,7 @@ export default function Feed() {
       <div className="feed-container">
         <div className="container-left">
           <div className="card-container">
-            <BasicCard />
+            <UserCard user={userData} />
           </div>
         </div>
         <div className="container-middle">
@@ -50,9 +67,7 @@ export default function Feed() {
               <div className="input">
                 <div className="user-container">
                   <Avatar className="userAvatar">
-                    <span id="Image">
-                      {localStorage.getItem("UserInitials")}
-                    </span>
+                    <span id="Image">{userData.initials}</span>
                   </Avatar>
                 </div>
                 <SimpleDialogDemo className="dialog" />
@@ -121,12 +136,11 @@ export default function Feed() {
                 </div>
               </div>
             </div>
-            <PostContainer />
+            <PostList posts={postsList ? postsList : []} />
           </div>
         </div>
         <div className="container-right"></div>
       </div>
-      <Footer />
     </div>
   );
 }

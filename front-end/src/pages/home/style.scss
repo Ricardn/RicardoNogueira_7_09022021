@@ -4,189 +4,371 @@ $color-lighter: #eef3f898;
 $color-darker: #eef3f8;
 $color-secondary: white;
 
-/* Nav container */
-
-body {
-  background-color: #f8faff;
-}
-
-.main {
-  display: flex;
-  flex-direction: column;
-
-  .main-container {
+/* Smartphones (portrait) ----------- */
+@media screen and (max-width: 414px) and (orientation: portrait) {
+  .main {
     display: flex;
-    max-height: 700px;
-    
-    .information-container {
+    flex-direction: column;
+    width: 100%;
+    .main-container {
       display: flex;
       flex-direction: column;
-      margin-left: 300px;
-      .Input-container {
-        margin-top: 40px;
-      }
-      h2 {
-        font-weight: 200;
-        font-size: 50px;
-        max-width: 500px;
-      }
-      form {
+      .information-container {
         display: flex;
-        margin-top: 20px;
         flex-direction: column;
-        max-width: 500px;
-        a {
-          margin-top: 20px;
-          max-width: 156px;
-        }
-        button {
-          font-weight: 600;
-          font-size: 20px;
-          margin-top: 30px;
+        justify-content: center;
+        max-width: 100%;
+        margin-bottom: 20px;
+
+        h2 {
+          font-size: 30px;
+          text-align: center;
+          max-width: 100%;
+          height: 100px;
           padding: 20px;
-          border-radius: 30px;
-          cursor: pointer;
-          background: $color-darker;
-          border: 2px solid $color-primary;
-          &:hover {
-            background: $color-primary;
-            color: white;
+        }
+        .Input-container {
+          display: flex;
+          margin: auto;
+          padding: 20px;
+          max-width: 414px;
+          form {
+            display: flex;
+            width: 250px;
+            margin: auto;
+          }
+          .input {
+            display: flex;
+            width: 100%;
+            margin: auto;
+            input {
+              background-color: white;
+            }
+          }
+          button {
+            width: 100%;
+          }
+        }
+        .image-container {
+          display: none;
+          justify-content: center;
+
+          img {
+            width: 100%;
           }
         }
       }
     }
-    .image-container {
-      transform: translateY(-480px);
-      margin-left: 850px;
-      justify-content: right;
+    .banner-container {
+      display: flex;
+      flex-direction: column;
+      width: 100;
+      text-align: center;
+    }
+    .timeline {
+      display: none;
+    }
+    .character-container {
+      display: block;
+      margin-top: 40px;
+      .text-container {
+        padding: 10px;
+        h2 {
+          margin: 10px;
+        }
+        p {
+          margin: 10px;
+          margin-bottom: 30px;
+        }
+      }
+
       img {
-        pointer-events: none;
-        max-width: 650px;
+        padding: 10px;
+        width: 80%;
+        height: 60%;
+        border-radius: 10px;
+        background-color: white;
       }
     }
   }
+}
 
-  .banner-container {
+/* Smartphones (landscape) ----------- */
+@media screen and (min-width: 320px) and (max-width: 768px) and (orientation: landscape) {
+  .main {
     display: flex;
     flex-direction: column;
-    margin-top: 100px;
-    padding: 100px;
-    background-color: white;
-    height: 2000px;
-
-    .character-container {
+    width: 100%;
+    .main-container {
       display: flex;
-      position: relative;
+      flex-direction: column;
+      .information-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        max-width: 100%;
+        margin-bottom: 20px;
+        h2 {
+          margin: auto;
+          font-size: 35px;
+          text-align: center;
+          max-width: 60%;
+          transform: translateY(-40px);
+        }
+        .Input-container {
+          display: flex;
+          margin: auto;
+          padding: 20px;
+          max-width: 414px;
+          form {
+            display: flex;
+            width: 100%;
+            margin: auto;
+          }
+          .input {
+            display: flex;
+            width: 100%;
 
-      padding: 10px;
-      .character-1 {
-        display: flex;
-        margin-right: auto;
-        display: flex;
-        padding: 10px;
-        width: 550px;
-        pointer-events: none;
-      }
-      .character-2 {
-        margin-top: 100px;
-        display: flex;
-        margin-left: auto;
-        padding: 10px;
-        width: 700px;
-        pointer-events: none;
-      }
-      .character-3 {
-        margin-top: 100px;
-        display: flex;
-        padding: 10px;
-        margin-left: 230px;
-        pointer-events: none;
+            margin: auto;
+            input {
+              background-color: white;
+            }
+          }
+          button {
+            width: 100%;
+          }
+        }
+        .image-container {
+          display: none;
+          justify-content: center;
+          img {
+            width: 100%;
+          }
+        }
       }
     }
-
-    .text-container-1 {
-      margin-top: 150px;
+    .banner-container {
       display: flex;
-      left: 880px;
-      position: absolute;
-      width: 500px;
-      padding: 50px;
-      background-color: $color-darker;
       flex-direction: column;
-      p {
-        font-size: 18px;
-        margin-top: 20px;
-      }
-    }
-
-    .text-container-2 {
-      margin-top: 150px;
-      display: flex;
-      left: 220px;
-      position: absolute;
-      width: 500px;
-      padding: 50px;
-      background-color: $color-darker;
-      flex-direction: column;
-
-      p {
-        font-size: 18px;
-        margin-top: 20px;
-      }
-    }
-
-    .text-container-3 {
-      margin-top: 685px;
-      display: flex;
-      left: 500px;
-      position: absolute;
-      width: 500px;
-      padding: 100px;
-      background-color: $color-darker;
-      flex-direction: column;
+      width: 100%;
       text-align: center;
-      p {
-        font-size: 18px;
-        margin-top: 20px;
+    }
+    .timeline {
+      display: none;
+    }
+    .character-container {
+      display: block;
+
+      margin-top: 40px;
+      .text-container {
+        padding: 10px;
+        h2 {
+          margin: 10px;
+        }
+        p {
+          margin: 10px;
+          margin-bottom: 30px;
+        }
+      }
+
+      img {
+        padding: 10px;
+        width: 80%;
+        height: 60%;
+        border-radius: 10px;
+        background-color: white;
       }
     }
   }
+}
 
-  .timeline {
-    display: flex;
-    width: 4px;
-    position: absolute;
-    background: #c9c8c2;
-    height: 1605px;
-    margin-left: 849px;
-    .dot-1 {
-      height: 40px;
-      min-width: 40px;
-      background-color: #c9c8c2;
-      border-radius: 50px;
-      margin-left: -18px;
-      margin-top: 230px;
-      z-index: 3;
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+  .body {
+    background-color: #f8faff;
+
+    .main {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      .main-container {
+        display: flex;
+        flex-direction: row;
+        .information-container {
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 20px;
+          z-index: 99999;
+          height: 550px;
+          h2 {
+            margin-left: 60px;
+            font-size: 35px;
+            text-align: center;
+            max-width: 30%;
+          }
+          .Input-container {
+            display: flex;
+            padding: 20px;
+            max-width: 414px;
+            form {
+              display: flex;
+              width: 100%;
+              margin: auto;
+            }
+            .input {
+              display: flex;
+              width: 100%;
+
+              margin: auto;
+              input {
+                background-color: white;
+              }
+            }
+            button {
+              width: 100%;
+            }
+          }
+          .image-container {
+            display: flex;
+            justify-content: flex-end;
+            transform: translateY(-450px);
+            margin-left: 200px;
+            z-index: -1;
+            img {
+              width: 60%;
+            }
+          }
+        }
+      }
+      .banner-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        background-color: $color-secondary;
+        box-shadow: 0px 0px 13px -7px #0000004f;
+      }
+      .timeline {
+        display: none;
+      }
+      .character-container {
+        display: block;
+        margin-top: 40px;
+        .text-container {
+          padding: 10px;
+          h2 {
+            margin: 10px;
+          }
+          p {
+            margin: 10px;
+            margin-bottom: 30px;
+          }
+        }
+
+        img {
+          padding: 10px;
+          width: 50%;
+          height: 60%;
+          border-radius: 10px;
+          background-color: white;
+        }
+      }
     }
+  }
+}
 
-    .dot-2 {
-      height: 40px;
-      min-width: 40px;
-      background-color: #c9c8c2;
-      border-radius: 50px;
-      margin-left: -40px;
-      margin-top: 700px;
-      z-index: 3;
-    }
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1366px) and (orientation: landscape) {
+  .body {
+    background-color: #f8faff;
 
-    .dot-3 {
-      height: 40px;
-      min-width: 40px;
-      background-color: #c9c8c2;
-      border-radius: 50px;
-      margin-left: -40px;
-      margin-top: 1600px;
-      z-index: 3;
+    .main {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      .main-container {
+        display: flex;
+        flex-direction: row;
+        .information-container {
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 20px;
+          z-index: 99999;
+          height: 550px;
+          margin-left: 200px;
+          h2 {
+            margin-left: 60px;
+            font-size: 35px;
+            text-align: center;
+            max-width: 30%;
+          }
+          .Input-container {
+            display: flex;
+            padding: 20px;
+            max-width: 414px;
+            form {
+              display: flex;
+              width: 100%;
+              margin: auto;
+            }
+            .input {
+              display: flex;
+              width: 100%;
+
+              margin: auto;
+              input {
+                background-color: white;
+              }
+            }
+            button {
+              width: 100%;
+            }
+          }
+          .image-container {
+            display: flex;
+            justify-content: flex-end;
+            transform: translateY(-450px);
+            margin-left: 200px;
+            z-index: -1;
+            img {
+              width: 60%;
+            }
+          }
+        }
+      }
+      .banner-container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        background-color: $color-secondary;
+        box-shadow: 0px 0px 13px -7px #0000004f;
+      }
+      .timeline {
+        display: none;
+      }
+      .character-container {
+        display: block;
+        margin-top: 40px;
+        .text-container {
+          padding: 10px;
+          h2 {
+            margin: 10px;
+          }
+          p {
+            margin: 10px;
+            margin-bottom: 30px;
+          }
+        }
+
+        img {
+          padding: 10px;
+          width: 50%;
+          height: 60%;
+          border-radius: 10px;
+          background-color: white;
+        }
+      }
     }
   }
 }

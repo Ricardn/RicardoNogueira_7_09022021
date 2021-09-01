@@ -1,7 +1,6 @@
 import React from "react";
 import "./footer.scss";
 
-
 export default function Footer() {
   return (
     <div>
@@ -13,30 +12,37 @@ export default function Footer() {
           </div>
           <ul>
             <li>
-              <h3>À propos</h3>
+              <h3>Société</h3>
+              <li>
+                <span>À propos</span>
+              </li>
+              <li>
+                <span>Actualités</span>
+              </li>
+              <li>
+                <span>Carrières</span>
+              </li>
             </li>
             <li>
-              <h3>Titre</h3>
+              <h3>
+                <span>Mentions légales</span>
+              </h3>
+              <li>
+                <span>Page légale</span>
+              </li>
+              <li>
+                <span>Plan du site</span>
+              </li>
             </li>
             <li>
-              <h3>Titre</h3>
+              <h3>Politique de confidentialité</h3>
+              <li>
+                <span>Politique de Cookies</span>
+              </li>
             </li>
-          </ul>
-          <ul>
-            <li>test</li>
-            <li>Conditions d’utilisation</li>
-            <li>Politique de Confidentialité</li>
-            <li>Politique relative aux cookies</li>
-          </ul>
-          <ul>
-            <li>test</li>
-            <li>test</li>
-            <li>test</li>
           </ul>
         </div>
       </footer>
     </div>
   );
 }
-
-
