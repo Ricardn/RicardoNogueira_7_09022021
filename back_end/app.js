@@ -16,10 +16,10 @@ const app = express();
 app.use(helmet());
 
 db.sequelize
-  .sync(/*{ force: true }*/)
-  .then((result) => {
-    console.log(result);
+  .sync({
+    /*force: false */
   })
+  .then(() => {})
   .catch((error) => {
     console.log(error);
   });

@@ -16,6 +16,7 @@ exports.signup = (req, res, next) => {
         email: req.body.email,
         isAdmin: req.body.isAdmin,
       };
+
       User.create(user)
         .then(() => res.status(201).json({ message: "User Account created !" }))
         .catch((error) =>

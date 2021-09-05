@@ -8,6 +8,7 @@ const op = db.Sequelize.op;
 exports.getAllPosts = (req, res, next) => {
   Post.findAll({
     attributes: { exclude: ["createdAt", "updateAt"] },
+    include: ["Comments", "User"],
   })
     .then((data) => res.status(200).send(data))
     .catch((error) =>
@@ -17,27 +18,32 @@ exports.getAllPosts = (req, res, next) => {
 
 //Create a new post
 exports.createNewPost = (req, res, next) => {
-  if (!req.body.title) {
-    res.status(401).send({
-      message: "The post must have a title",
-    });
-    return;
-  }
+  try {
+    console.log(" try to create post");
+    const imageUrl = `${req.protocol}://${req.get("host")}/images/${
+      req.file.filename
+    }`;
 
-  if (req.body.imageUrl) {
+    if (!req.body.userId) {
+      res
+        .send(500)
+        .send({ error: "validation", message: "missing field userId" });
+    }
+
     const post = {
-      userId: req.body.userId,
-      title: req.body.title,
+      UserId: req.body.userId,
       date: Date.now(),
       content: req.body.content,
       likes: 0,
-      imageUrl: req.body.imageUrl,
+      imageUrl: imageUrl,
     };
     Post.create(post)
       .then(() => res.status(201).json({ message: "Post created !" }))
       .catch((error) =>
         res.status(500).send({ error, message: "Unable to create a post" })
       );
+  } catch (error) {
+    res.status(500).send({ error, message: error.message });
   }
 };
 
@@ -45,7 +51,6 @@ exports.createNewPost = (req, res, next) => {
 exports.updatePost = (req, res, next) => {
   Post.update(
     {
-      title: req.body.title,
       content: req.body.content,
       imageURL: req.body.imageURL,
     },
