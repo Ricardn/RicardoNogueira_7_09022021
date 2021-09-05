@@ -1,16 +1,16 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const auth = require('../middleware/auth')
-const userCtrl = require('../controllers/user');
+const auth = require("../middleware/auth");
+const userCtrl = require("../controllers/user");
 
 //SignUp
-router.post('/auth/signup', userCtrl.signup);
+router.post("/auth/signup", userCtrl.signup);
 
 //SignIn
 router.post("/auth/signin", userCtrl.signin);
 
 //Get Own Profile
-router.get("/users/myprofile/:id", auth, userCtrl.getMyProfile);
+//router.get("/users/myprofile/:id", auth, userCtrl.getMyProfile);
 
 //Update Own Profile
 router.put("/users/myprofile/:id", auth, userCtrl.updateMyProfile);
