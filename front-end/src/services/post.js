@@ -1,10 +1,12 @@
+import getUserToken from "../utils/getUserToken";
+
 const getPost = async (id) => {
   try {
     await fetch("http://localhost:3000/api/posts", {
       method: "GET",
       headers: {
         Accept: "application/json",
-        Authorization: "BEARER " + id,
+        Authorization: "Bearer " + id,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(),
@@ -13,7 +15,6 @@ const getPost = async (id) => {
     return {
       status: 200,
       data: {
-        title: "Post title",
         content: "Post content",
         likes: 340,
         comments: [],
@@ -28,13 +29,15 @@ const getPost = async (id) => {
   }
 };
 
-const getPosts = async (id) => {
+const getPosts = async (token) => {
   try {
+    const token = getUserToken();
+
     await fetch("http://localhost:3000/api/posts", {
       method: "GET",
       headers: {
         Accept: "application/json",
-        Authorization: "BEARER " + id,
+        Authorization: "Bearer " + token,
         "Content-Type": "application/json",
       },
       body: JSON.stringify(),
@@ -44,7 +47,6 @@ const getPosts = async (id) => {
       status: 200,
       data: [
         {
-          title: "Post title 1",
           content: "Some post content",
           likes: 340,
           comments: [],
@@ -54,7 +56,6 @@ const getPosts = async (id) => {
           },
         },
         {
-          title: "Post title 2",
           content: "Some post content",
           likes: 340,
           comments: [],
@@ -64,7 +65,6 @@ const getPosts = async (id) => {
           },
         },
         {
-          title: "Post title 3",
           content: "Some post content",
           likes: 340,
           comments: [],

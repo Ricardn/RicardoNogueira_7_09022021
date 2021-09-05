@@ -1,3 +1,5 @@
+import getUserToken from "../utils/getUserToken";
+
 const standardize = async (response) => {
   if (response.status !== 200) {
     return {
@@ -47,7 +49,28 @@ const signUp = async (params) => {
   }
 };
 
+const UpdateProfile = async (params) => {
+  try {
+    const token = getUserToken();
+
+    await fetch("http://localhost:3000/users/myprofile/", {
+      method: "PUT",
+      headers: {
+        Authorization: "BEARER " + token,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(params),
+    });
+
+    return await standardize();
+  } catch (err) {
+    throw err;
+  }
+};
+
 export default {
   signIn,
   signUp,
+  UpdateProfile,
 };
