@@ -1,44 +1,73 @@
-form {
-  .title-container {
-    height: 60px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.192);
-  }
+/* Smartphones (portrait) ----------- */
+@media screen and (max-width: 414px) and (orientation: portrait) {
+  form {
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    .title-container {
+      height: 60px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.192);
+    }
 
-  .input-container {
-    .User-container {
+    .input-container {
       display: flex;
-      margin-left: 8px;
-      transform: translateY(10px);
-      .UserName {
-        margin: 10px;
+      flex-direction: column;
+
+      .User-container {
+        display: flex;
+        margin-left: 8px;
+        transform: translateY(10px);
+        .UserName {
+          margin: 10px;
+        }
+      }
+      .text-container {
+        transform: translateY(30px);
+        img {
+          display: flex;
+          max-width: 100%;
+        }
       }
     }
-    .text-container {
-      transform: translateY(30px);
-    }
-  }
-  .btn-hastag {
-    margin-bottom: 20px;
-    transform: translateY(160px);
-    margin-left: 8px;
-    font-weight: 600;
-  }
 
-  .btn-container {
-    display: flex;
-    transform: translateY(60px);
-    margin-right: 10px;
-    button {
-      text-transform: capitalize;
-    }
-
-    display: flex;
-    .btn {
-      margin-right: 20px;
-    }
-    .btn-validation {
-      .sendIcon {
-        margin-left: 6px;
+    .btn-container {
+      display: flex;
+      flex-direction: column;
+      transform: translateY(60px);
+      height: 200px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      align-items: center;
+      min-width: 100%;
+      input {
+        display: flex;
+        width: 100%;
+      }
+      button {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        text-transform: capitalize;
+      }
+      .btn {
+        display: flex;
+        flex-direction: column;
+        margin-top: 10px;
+      }
+      .Gif-Container {
+        display: block;
+        flex-direction: column;
+        img {
+          margin: 6px;
+          width: 100px;
+        }
+        button {
+          display: flex;
+          margin-top: 10px;
+          margin-bottom: 10px;
+        }
+        .show {
+          display: block;
+        }
       }
     }
   }

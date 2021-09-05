@@ -72,6 +72,9 @@ export default function SignUp() {
                 type="text"
                 variant="outlined"
                 margin="normal"
+                inputProps={{
+                  autoCapitalize: "sentences",
+                }}
                 {...register("lastName", {
                   required: "Ce champ est obligatoire",
                 })}
@@ -91,6 +94,9 @@ export default function SignUp() {
                 type="text"
                 variant="outlined"
                 margin="normal"
+                inputProps={{
+                  autoCapitalize: "sentences",
+                }}
                 {...register("firstName", {
                   required: "Ce champ est obligatoire",
                 })}

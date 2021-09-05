@@ -16,7 +16,6 @@ const PostsList = ({ posts }) => {
 PostsList.propTypes = {
   posts: PropTypes.arrayOf(
     PropTypes.shape({
-      title: PropTypes.string.isRequired,
       content: PropTypes.string.isRequired,
       likes: PropTypes.number.isRequired,
       commentaires: PropTypes.arrayOf(PropTypes.shape()).isRequired,

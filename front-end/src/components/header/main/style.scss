@@ -6,7 +6,11 @@ $color-secondary: white;
 
 /* Smartphones (portrait) ----------- */
 @media screen and (max-width: 414px) and (orientation: portrait) {
+  body {
+    max-width: 100%;
+  }
   nav {
+    max-width: 100%;
     .topbarcontainer {
       display: flex;
       flex-direction: column;
@@ -82,7 +86,78 @@ $color-secondary: white;
 
 /* Smartphones (landscape) ----------- */
 @media screen and (min-width: 320px) and (orientation: landscape) {
+  body {
+    max-width: 100%;
+  }
   nav {
+    
+    .topbarcontainer {
+      display: flex;
+      position: sticky;
+      min-width: 100%;
+      background-color: $color-secondary;
+      box-shadow: 0px 10px 13px -7px #0000004f;
+      /* Logo */
+      .topbarLeft {
+        display: flex;
+        width: 100%;
+        height: 60px;
+        padding: 10px;
+        vertical-align: middle;
+        .logo-container {
+          display: flex;
+          .topbarlogo {
+            display: flex;
+            flex-direction: row;
+            margin-top: 6px;
+            img {
+              background-color: $color-primary;
+              border-radius: 10px;
+              padding: 3px;
+              height: 40px;
+              width: 40px;
+            }
+            h1 {
+              margin-left: 10px;
+              margin-top: 10px;
+              font-weight: 600;
+              color: black;
+            }
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+        .buttonContainer {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-end;
+          width: 100%;
+          padding: 10px;
+          a {
+            margin-right: 20px;
+          }
+          button {
+            padding: 10px;
+            width: 100%;
+            span {
+              margin-top: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  /* Styles */
+  body {
+    max-width: 100%;
+  }
+  nav {
+    max-width: 100%;
     .topbarcontainer {
       display: flex;
       position: sticky;
@@ -145,14 +220,13 @@ $color-secondary: white;
   }
 }
 
-/* iPads (portrait) ----------- */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
-  /* Styles */
-}
-
 /* iPads (landscape) ----------- */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1366px) and (orientation: landscape) {
+  body {
+    max-width: 100%;
+  }
   nav {
+    max-width: 100%;
     .topbarcontainer {
       display: flex;
       position: sticky;

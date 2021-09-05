@@ -6,10 +6,13 @@ $color-secondary: white;
 
 /* Smartphones (portrait) ----------- */
 @media screen and (max-width: 414px) and (orientation: portrait) {
-  .main {
+  body {
+    max-width: 100%;
+  }
+  .main-body {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    max-width: 100%;
     .main-container {
       display: flex;
       flex-direction: column;
@@ -29,16 +32,19 @@ $color-secondary: white;
         }
         .Input-container {
           display: flex;
+          flex-direction: column;
           margin: auto;
           padding: 20px;
           max-width: 414px;
           form {
             display: flex;
+            flex-direction: column;
             width: 250px;
             margin: auto;
           }
           .input {
             display: flex;
+            flex-direction: column;
             width: 100%;
             margin: auto;
             input {
@@ -47,6 +53,13 @@ $color-secondary: white;
           }
           button {
             width: 100%;
+            height: 40px;
+            background-color: $color-primary;
+            color: white;
+            font-weight: 600;
+            &:hover {
+              cursor: pointer;
+            }
           }
         }
         .image-container {
@@ -54,6 +67,7 @@ $color-secondary: white;
           justify-content: center;
 
           img {
+            display: none;
             width: 100%;
           }
         }
@@ -62,7 +76,7 @@ $color-secondary: white;
     .banner-container {
       display: flex;
       flex-direction: column;
-      width: 100;
+      width: 100%;
       text-align: center;
     }
     .timeline {
@@ -94,8 +108,11 @@ $color-secondary: white;
 }
 
 /* Smartphones (landscape) ----------- */
-@media screen and (min-width: 320px) and (max-width: 768px) and (orientation: landscape) {
-  .main {
+@media screen and (min-width: 320px) and (max-width: 896px) and (max-height: 414px) and (orientation: landscape) {
+  body {
+    max-width: 100%;
+  }
+  .main-body {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -113,22 +130,24 @@ $color-secondary: white;
           font-size: 35px;
           text-align: center;
           max-width: 60%;
-          transform: translateY(-40px);
+          margin-top: 20px;
         }
         .Input-container {
           display: flex;
+          flex-direction: column;
           margin: auto;
           padding: 20px;
           max-width: 414px;
           form {
             display: flex;
+            flex-direction: column;
             width: 100%;
             margin: auto;
           }
           .input {
             display: flex;
+            flex-direction: column;
             width: 100%;
-
             margin: auto;
             input {
               background-color: white;
@@ -136,6 +155,13 @@ $color-secondary: white;
           }
           button {
             width: 100%;
+            height: 40px;
+            background-color: $color-primary;
+            color: white;
+            font-weight: 600;
+            &:hover {
+              cursor: pointer;
+            }
           }
         }
         .image-container {
@@ -182,192 +208,193 @@ $color-secondary: white;
   }
 }
 
-/* iPads (landscape) ----------- */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-  .body {
-    background-color: #f8faff;
-
-    .main {
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (orientation: portrait) {
+  body {
+    max-width: 100%;
+  }
+  .main-body {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    .main-container {
       display: flex;
       flex-direction: column;
-      width: 100%;
-      .main-container {
-        display: flex;
-        flex-direction: row;
-        .information-container {
-          display: flex;
-          flex-direction: column;
-          margin-bottom: 20px;
-          z-index: 99999;
-          height: 550px;
-          h2 {
-            margin-left: 60px;
-            font-size: 35px;
-            text-align: center;
-            max-width: 30%;
-          }
-          .Input-container {
-            display: flex;
-            padding: 20px;
-            max-width: 414px;
-            form {
-              display: flex;
-              width: 100%;
-              margin: auto;
-            }
-            .input {
-              display: flex;
-              width: 100%;
-
-              margin: auto;
-              input {
-                background-color: white;
-              }
-            }
-            button {
-              width: 100%;
-            }
-          }
-          .image-container {
-            display: flex;
-            justify-content: flex-end;
-            transform: translateY(-450px);
-            margin-left: 200px;
-            z-index: -1;
-            img {
-              width: 60%;
-            }
-          }
-        }
-      }
-      .banner-container {
+      .information-container {
         display: flex;
         flex-direction: column;
-        width: 100%;
-        text-align: center;
-        background-color: $color-secondary;
-        box-shadow: 0px 0px 13px -7px #0000004f;
-      }
-      .timeline {
-        display: none;
-      }
-      .character-container {
-        display: block;
-        margin-top: 40px;
-        .text-container {
-          padding: 10px;
-          h2 {
-            margin: 10px;
-          }
-          p {
-            margin: 10px;
-            margin-bottom: 30px;
-          }
-        }
+        justify-content: center;
+        max-width: 100%;
+        margin-bottom: 20px;
 
-        img {
-          padding: 10px;
-          width: 50%;
-          height: 60%;
-          border-radius: 10px;
-          background-color: white;
+        h2 {
+          margin: auto;
+          font-size: 30px;
+          text-align: center;
+          max-width: 300px;
+          padding: 20px;
         }
+        .Input-container {
+          display: flex;
+          flex-direction: column;
+          margin: auto;
+          padding: 20px;
+          max-width: 614px;
+          form {
+            display: flex;
+            flex-direction: column;
+            width: 400px;
+            margin: auto;
+          }
+          .input {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin: auto;
+            input {
+              background-color: white;
+            }
+          }
+          button {
+            width: 100%;
+            height: 40px;
+            background-color: $color-primary;
+            color: white;
+            font-weight: 600;
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+        .image-container {
+          display: none;
+          justify-content: center;
+
+          img {
+            width: 100%;
+          }
+        }
+      }
+    }
+    .banner-container {
+      display: flex;
+      flex-direction: column;
+      width: 100;
+      text-align: center;
+    }
+    .timeline {
+      display: none;
+    }
+    .character-container {
+      display: block;
+      margin-top: 40px;
+      .text-container {
+        padding: 10px;
+        h2 {
+          margin: 10px;
+        }
+        p {
+          margin: auto;
+          margin-bottom: 30px;
+          width: 600px;
+        }
+      }
+
+      img {
+        padding: 10px;
+        width: 80%;
+        height: 60%;
+        border-radius: 10px;
+        background-color: white;
       }
     }
   }
 }
 
-/* iPads (landscape) ----------- */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1366px) and (orientation: landscape) {
-  .body {
-    background-color: #f8faff;
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (orientation: landscape) {
+  .main-body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    .main-container {
+      display: flex;
+      flex-direction: row;
+      background-color: #f8faff;
+      max-width: 100%;
+      height: 85vh;
+      padding-bottom: 4%;
+      .information-container {
+        display: flex;
+        flex-direction: column;
+        max-width: 100%;
+        margin: auto;
 
-    .main {
+        h2 {
+          font-size: 35px;
+          text-align: center;
+          max-width: 400px;
+          margin-top: 20px;
+          height: 130px;
+          margin-bottom: 20px;
+        }
+        .Input-container {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          max-width: 600px;
+          form {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+          }
+          .input {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin-bottom: 10px;
+            input {
+              background-color: white;
+            }
+          }
+          button {
+            width: 100%;
+            height: 40px;
+            background-color: $color-primary;
+            color: white;
+            font-weight: 600;
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+    .banner-container {
       display: flex;
       flex-direction: column;
       width: 100%;
-      .main-container {
-        display: flex;
-        flex-direction: row;
-        .information-container {
-          display: flex;
-          flex-direction: column;
-          margin-bottom: 20px;
-          z-index: 99999;
-          height: 550px;
-          margin-left: 200px;
-          h2 {
-            margin-left: 60px;
-            font-size: 35px;
-            text-align: center;
-            max-width: 30%;
-          }
-          .Input-container {
-            display: flex;
-            padding: 20px;
-            max-width: 414px;
-            form {
-              display: flex;
-              width: 100%;
-              margin: auto;
-            }
-            .input {
-              display: flex;
-              width: 100%;
+      text-align: center;
+    }
+    .character-container {
+      display: block;
+      margin-top: 40px;
+      .text-container {
+        padding: 10px;
+        h2 {
+          margin: 10px;
+        }
+        p {
+          margin: 10px;
+          margin-bottom: 30px;
+        }
+      }
 
-              margin: auto;
-              input {
-                background-color: white;
-              }
-            }
-            button {
-              width: 100%;
-            }
-          }
-          .image-container {
-            display: flex;
-            justify-content: flex-end;
-            transform: translateY(-450px);
-            margin-left: 200px;
-            z-index: -1;
-            img {
-              width: 60%;
-            }
-          }
-        }
-      }
-      .banner-container {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        text-align: center;
-        background-color: $color-secondary;
-        box-shadow: 0px 0px 13px -7px #0000004f;
-      }
-      .timeline {
-        display: none;
-      }
-      .character-container {
-        display: block;
-        margin-top: 40px;
-        .text-container {
-          padding: 10px;
-          h2 {
-            margin: 10px;
-          }
-          p {
-            margin: 10px;
-            margin-bottom: 30px;
-          }
-        }
-
-        img {
-          padding: 10px;
-          width: 50%;
-          height: 60%;
-          border-radius: 10px;
-          background-color: white;
-        }
+      img {
+        padding: 10px;
+        width: 20%;
+        border-radius: 10px;
+        background-color: white;
       }
     }
   }

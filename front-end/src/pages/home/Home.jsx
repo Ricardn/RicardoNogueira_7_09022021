@@ -52,7 +52,7 @@ export default function Home() {
   return (
     <div className="body">
       <Nav />
-      <div className="main">
+      <div className="main-body">
         <div className="main-container">
           <div className="information-container">
             <h2>Bienvenue dans votre communauté professionnelle</h2>
@@ -111,9 +111,6 @@ export default function Home() {
                 <button type="submit">Valider</button>
               </form>
             </div>
-            <div className="image-container">
-              <img src={Animation} alt="test" />
-            </div>
           </div>
         </div>
 
@@ -170,6 +167,11 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
+/*
+   <div className="image-container">
+            <img src={Animation} alt="test" />
+          </div>*/

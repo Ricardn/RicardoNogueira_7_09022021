@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import ListGroup from "react-bootstrap/ListGroup";
+
+import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import { useForm } from "react-hook-form";
 import Button from "@material-ui/core/Button";
@@ -16,12 +19,21 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { Gif } from "@material-ui/icons";
 import SendIcon from "@material-ui/icons/Send";
-import PhotoLibraryIcon from "@material-ui/icons/PhotoLibrary";
-import VideoLibraryIcon from "@material-ui/icons/VideoLibrary";
-import PictureAsPdfIcon from "@material-ui/icons/PictureAsPdf";
 import Avatar from "@material-ui/core/Avatar";
 
+import getUserToken from "../../utils/getUserToken";
+
+import Facepalm from "../../assets/gifs/FacePalm.gif";
+import GoodMorning from "../../assets/gifs/GoodMorning.gif";
+import ItsFriday from "../../assets/gifs/ItsFriday.gif";
+import Laugh from "../../assets/gifs/Laugh.gif";
+import Thanks from "../../assets/gifs/Thanks.gif";
+
 import "./style.scss";
+
+function alertClicked() {
+  alert("You clicked the third ListGroupItem");
+}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -81,7 +93,7 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
-export default function CustomizedDialogs() {
+function CustomizedDialogs({ user }) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -98,7 +110,38 @@ export default function CustomizedDialogs() {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const [selectedFile, setSelectedFile] = useState();
+  const [preview, setPreview] = useState();
 
+  useEffect(() => {
+    if (!selectedFile) {
+      setPreview(undefined);
+
+      return;
+    }
+
+    const objectUrl = URL.createObjectURL(selectedFile);
+    setPreview(objectUrl);
+
+    // free memory when ever this component is unmounted
+    return () => URL.revokeObjectURL(objectUrl);
+  }, [selectedFile]);
+
+  const onSelectFile = (e) => {
+    if (!e.target.files || e.target.files.length === 0) {
+      setSelectedFile(undefined);
+      return;
+    }
+
+    // I've kept this example simple by using the first image instead of multiple
+    setSelectedFile(e.target.files[0]);
+  };
+
+  const [showText, setShowText] = useState(false);
+  const onClick = () => {
+    setShowText(true);
+  };
+  //document.getElementById('Gif-Container').classList.toggle("show");
   return (
     <div>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
@@ -111,10 +154,12 @@ export default function CustomizedDialogs() {
       >
         <form
           onSubmit={handleSubmit((data) => {
-            fetch("http://localhost:3000/", {
+            const token = getUserToken();
+            fetch("http://localhost:3000/api/posts", {
               method: "POST",
               headers: {
                 Accept: "application/json",
+                Authorization: "Bearer " + token,
                 "Content-Type": "application/json",
               },
               body: JSON.stringify(data),
@@ -123,7 +168,6 @@ export default function CustomizedDialogs() {
                 .json()
                 .then((data) => {
                   console.log(data);
-                  return data;
                 })
                 .catch((err) => {
                   console.log(err);
@@ -139,10 +183,10 @@ export default function CustomizedDialogs() {
           <div className="input-container">
             <div className="User-container">
               <Avatar className="userAvatar">
-                <span id="Image">{localStorage.getItem("UserInitials")}</span>
+                <span id="Image">{user.initials}</span>
               </Avatar>
               <span className="UserName" id="UserName">
-                {localStorage.getItem("UserName")}
+                {user.username}
               </span>
             </div>
             <div className="text-container">
@@ -168,76 +212,41 @@ export default function CustomizedDialogs() {
                     })}
                   />
                 </Box>
+                <img id="blah" src={preview} alt="Votre Image" />
               </MuiDialogContent>
             </div>
-          </div>
-
-          <div className="btn-hastag">
-            <Button variant="text">
-              <span>Ajouter un hashtag</span>
-            </Button>
           </div>
           <DialogActions>
             <div className="btn-container">
               <div className="btn">
-                <input
-                  accept="image/*"
-                  className={classes.input}
-                  id="contained-button-file"
-                  multiple
-                  type="file"
-                />
                 <label htmlFor="contained-button-file">
                   <Button variant="contained" size="medium" component="span">
-                    <PhotoLibraryIcon />
-                    Photo
+                    {" "}
+                    <input
+                      accept="image/*"
+                      type="file"
+                      onClick={onSelectFile}
+                      {...register("imageUrl", {
+                        required: "Ce champ est obligatoire",
+                      })}
+                    />
                   </Button>
                 </label>
               </div>
+
               <div className="btn">
-                <input
-                  accept="video/*"
-                  className={classes.input}
-                  id="contained-button-file"
-                  multiple
-                  type="file"
-                />
-                <label htmlFor="contained-button-file">
-                  <Button variant="contained" size="medium" component="span">
-                    <VideoLibraryIcon />
-                    Vidéo
-                  </Button>
-                </label>
-              </div>
-              <div className="btn">
-                <input
-                  accept=".pdf"
-                  className={classes.input}
-                  id="contained-button-file"
-                  multiple
-                  type="file"
-                />
-                <label htmlFor="contained-button-file">
-                  <Button variant="contained" size="medium" component="span">
-                    <PictureAsPdfIcon />
-                    Pdf
-                  </Button>
-                </label>
-              </div>
-              <div className="btn">
-                <input
-                  accept="image/*"
-                  className={classes.input}
-                  id="contained-button-file"
-                  multiple
-                  type="file"
-                />
-                <label htmlFor="contained-button-file">
-                  <Button variant="contained" size="medium" component="span">
-                    <Gif />
-                    Gif
-                  </Button>
-                </label>
+                <Button
+                  onClick={onClick}
+                  variant="contained"
+                  size="medium"
+                  component="span"
+                >
+                  <Gif />
+                  Gif
+                </Button>
+                <div id="Gif-Body" className="Gif-Body">
+                  {showText ? <Text /> : null}
+                </div>
               </div>
               <div className="btn-validation">
                 <Button
@@ -256,3 +265,53 @@ export default function CustomizedDialogs() {
     </div>
   );
 }
+
+const Text = () => (
+  <div className="Gif-Container" id="Gif-Container">
+    <Button>
+      <img src={Facepalm} alt="FacePalm" />
+    </Button>
+    <Button>
+      <img src={GoodMorning} alt="FacePalm" />
+    </Button>
+    <Button>
+      <img src={ItsFriday} alt="FacePalm" />
+    </Button>
+    <Button>
+      <img src={Laugh} alt="FacePalm" />
+    </Button>
+    <Button>
+      <img src={Thanks} alt="FacePalm" />
+    </Button>
+  </div>
+);
+
+CustomizedDialogs.propTypes = {
+  user: PropTypes.shape({
+    username: PropTypes.string.isRequired,
+    initials: PropTypes.string.isRequired,
+  }),
+};
+
+export default CustomizedDialogs;
+
+/*   onSubmit={handleSubmit((data) => {
+            fetch("http://localhost:3000/", {
+              method: "POST",
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(data),
+            }).then((response) => {
+              return response
+                .json()
+                .then((data) => {
+                  console.log(data);
+                  return data;
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
+            });
+          })}*/

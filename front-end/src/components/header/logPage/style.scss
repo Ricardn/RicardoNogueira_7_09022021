@@ -4,19 +4,168 @@ $color-lighter: #eef3f898;
 $color-darker: #eef3f8;
 $color-secondary: white;
 
-/* Nav container */
+/* Smartphones (portrait) ----------- */
+@media screen and (max-width: 414px) and (orientation: portrait) {
+  nav {
+    max-width: 100%;
+    .topbarcontainerLog {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
 
-.return {
-  margin-right: 100px;
-  max-height: 50px;
-  &:hover {
-    font-weight: 600;
-    cursor: pointer;
-    background-color: $color-darker;
-    color: white;
+      position: sticky;
+      background-color: $color-secondary;
+      box-shadow: 0px 10px 13px -7px #0000004f;
+
+      /* Logo */
+      .topbarLeftLog {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        max-width: 100%;
+        margin-top: 20px;
+
+        .logo-containerLog {
+          display: flex;
+          justify-content: center;
+          margin-bottom: 20px;
+          width: 100%;
+          .topbarlogoLog {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            display: flex;
+            width: 50px;
+            height: 50px;
+            img {
+              background-color: $color-primary;
+              border-radius: 10px;
+              padding: 3px;
+              height: 40px;
+              width: 40px;
+            }
+            h1 {
+              margin-left: 10px;
+              margin-top: 10px;
+              font-weight: 600;
+              color: black;
+            }
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+        .buttonContainerLog {
+          display: flex;
+
+          flex-direction: column;
+          height: 150px;
+          width: 80%;
+          margin: auto;
+          padding: 20px;
+          button {
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            margin-top: 20px;
+            width: 100%;
+            span {
+              margin-top: 10px;
+            }
+          }
+        }
+      }
+    }
   }
-  .returnIcon {
-      
+  .returnLog {
+    margin: auto;
+    padding: 20px;
+    max-height: 50px;
+
+    .returnIcon {
       margin-top: 5px;
+    }
   }
+}
+
+/* Smartphones (landscape) ----------- */
+@media screen and (min-width: 320px) and (orientation: landscape) {
+  nav {
+    max-width: 100%;
+    .topbarcontainerLog {
+      display: flex;
+      position: sticky;
+      background-color: $color-secondary;
+      box-shadow: 0px 10px 13px -7px #0000004f;
+
+      /* Logo */
+      .topbarLeftLog {
+        display: flex;
+        justify-content: space-between;
+        text-align: center;
+        margin: auto;
+        width: 100%;
+        .logo-containerLog {
+          display: flex;
+          width: 100%;
+          margin-left: 90px;
+          .topbarlogoLog {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            display: flex;
+            width: 50px;
+            height: 50px;
+            margin-top: 10px;
+            margin-right: 100px;
+            img {
+              background-color: $color-primary;
+              border-radius: 10px;
+              padding: 3px;
+              height: 40px;
+              width: 40px;
+            }
+            h1 {
+              margin-left: 10px;
+              margin-top: 10px;
+              font-weight: 600;
+              color: black;
+            }
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+        .buttonContainerLog {
+          display: flex;
+          flex-direction: column;
+          width: 80%;
+          margin: auto;
+          button {
+            text-align: center;
+            justify-content: center;
+            width: 100%;
+            span {
+              margin-top: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .returnLog {
+    margin: auto;
+    padding: 20px;
+    height: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+}
+
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1366px) and (orientation: landscape) {
 }

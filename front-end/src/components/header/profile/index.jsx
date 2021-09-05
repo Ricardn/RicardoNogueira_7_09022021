@@ -1,7 +1,8 @@
 import React from "react";
 import { toast } from "react-toastify";
+import { BrowserRouter as Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import { Link } from "react-router-dom";
+
 import Button from "@material-ui/core/Button";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Badge from "@material-ui/core/Badge";
@@ -11,9 +12,9 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import "react-toastify/dist/ReactToastify.min.css";
 import "./style.scss";
 
-function FeedNavBar() {
+function FeedNavBar({ user }) {
   const notifyError = () =>
-    toast.error("Vous êtes sur le point de vous déconnecter !");
+    toast.error("Vous êtes sur le point de vous déconnécter !");
 
   function logOut() {
     notifyError();
@@ -37,7 +38,7 @@ function FeedNavBar() {
         <div className="topbarcontainer">
           <div className="topbarLeft">
             <div className="logo-container">
-              <Link to="/feed">
+              <Link to={"/feed"}>
                 <div className="topbarlogo">
                   <img src="/images/logo-white.png" alt="logo" />
                   <h1 className="logoName">Groupomania</h1>

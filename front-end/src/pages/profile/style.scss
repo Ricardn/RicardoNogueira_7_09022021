@@ -1,0 +1,59 @@
+h1 {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  .ProfileInput {
+    display: flex;
+    .LabelInput {
+      width: 80px;
+    }
+    label {
+      margin-top: 35px;
+    }
+  }
+  button {
+    margin-top: 40px;
+    height: 60px;
+    width: 40%;
+    font-size: 20px;
+  }
+  .PasswordContainer {
+    display: none;
+
+    .visiblediv {
+      display: block;
+    }
+  }
+  .ResetPassword {
+    &:hover {
+      cursor: pointer;
+      background-color: rgba(128, 128, 128, 0.24);
+    }
+  }
+  .SaveBtn {
+    margin-top: 40px;
+    height: 60px;
+    width: 40%;
+
+    &:hover {
+      cursor: pointer;
+      background-color: rgba(0, 128, 0, 0.226);
+    }
+    span {
+      font-size: xx-large;
+    }
+  }
+  .removeBtn {
+    color: red;
+    &:hover {
+      cursor: pointer;
+      background-color: rgba(255, 0, 0, 0.11);
+    }
+  }
+}
