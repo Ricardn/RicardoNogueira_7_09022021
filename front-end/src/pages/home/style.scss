@@ -313,6 +313,9 @@ $color-secondary: white;
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) and (orientation: landscape) {
+  body {
+    overflow-x: hidden;
+  }
   .main-body {
     display: flex;
     flex-direction: column;

@@ -46,7 +46,7 @@ export default function Feed() {
   return (
     <div>
       <FeedNavBar />
-      <div className="feed-container">
+      <div className="Feed-container">
         <div className="container-left">
           <div className="card-container">
             <UserCard user={userData} />
