@@ -4,69 +4,566 @@
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
-    .title-container {
-      height: 60px;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.192);
-    }
-
-    .input-container {
+    .form-Container {
       display: flex;
       flex-direction: column;
+      width: 300px;
 
-      .User-container {
+      .title-container {
         display: flex;
-        margin-left: 8px;
-        transform: translateY(10px);
-        .UserName {
-          margin: 10px;
-        }
-      }
-      .text-container {
-        transform: translateY(30px);
-        img {
-          display: flex;
-          max-width: 100%;
-        }
-      }
-    }
-
-    .btn-container {
-      display: flex;
-      flex-direction: column;
-      transform: translateY(60px);
-      height: 200px;
-      margin-top: 10px;
-      margin-bottom: 10px;
-      align-items: center;
-      min-width: 100%;
-      input {
-        display: flex;
-        width: 100%;
-      }
-      button {
-        margin-top: 10px;
-        margin-bottom: 10px;
-        text-transform: capitalize;
-      }
-      .btn {
-        display: flex;
-        flex-direction: column;
-        margin-top: 10px;
-      }
-      .Gif-Container {
-        display: block;
-        flex-direction: column;
-        img {
-          margin: 6px;
-          width: 100px;
-        }
+        justify-content: flex-start;
+        height: 60px;
+        width: 160px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.192);
         button {
-          display: flex;
-          margin-top: 10px;
-          margin-bottom: 10px;
+          color: black;
+          width: 20px;
+          height: 20px;
+          padding: 30px;
         }
-        .show {
-          display: block;
+      }
+
+      .input-container {
+        display: flex;
+        flex-direction: column;
+
+        .User-container {
+          display: flex;
+          margin-left: 8px;
+          transform: translateY(10px);
+          .UserName {
+            margin: 10px;
+          }
+        }
+        .text-container {
+          img {
+            display: flex;
+            max-width: 100%;
+          }
+        }
+      }
+
+      .btn-container {
+        display: flex;
+        flex-direction: column;
+        height: 200px;
+        margin-bottom: 10px;
+        align-items: center;
+
+        input {
+          display: flex;
+        }
+
+        .btn-group {
+          display: flex;
+          flex-direction: column;
+
+          .ttt {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 220px;
+            margin-top: 16px;
+            .btn {
+              margin-left: 5px;
+              button {
+                width: 100px;
+                height: 40px;
+              }
+            }
+            .btn-validation {
+              margin-right: 5px;
+              button {
+                width: 100px;
+                height: 40px;
+              }
+            }
+          }
+
+          .Gif-Container {
+            display: flex;
+            flex-direction: row;
+            width: 220px;
+            height: 400px;
+            margin-top: 20px;
+            justify-content: space-around;
+            flex-wrap: wrap;
+
+            button {
+              margin-top: 10px;
+              margin-bottom: 10px;
+              width: 110px;
+              height: 100px;
+              img {
+                max-width: 100px;
+                max-height: 100px;
+              }
+              &:hover {
+                background-color: rgba(128, 128, 128, 0.274);
+              }
+            }
+            .show {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Smartphones (landscape) ----------- */
+@media screen and (min-width: 320px) and (max-width: 896px) and (max-height: 414px) and (orientation: landscape) {
+  form {
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    .form-Container {
+      display: flex;
+      flex-direction: column;
+      width: 400px;
+
+      .title-container {
+        display: flex;
+        justify-content: flex-start;
+        height: 60px;
+        width: 160px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.192);
+        button {
+          color: black;
+          width: 20px;
+          height: 20px;
+          padding: 30px;
+        }
+      }
+
+      .input-container {
+        display: flex;
+        flex-direction: column;
+
+        .User-container {
+          display: flex;
+          margin-left: 8px;
+          transform: translateY(10px);
+          .UserName {
+            margin: 10px;
+          }
+        }
+        .text-container {
+          img {
+            display: flex;
+            max-width: 100%;
+          }
+        }
+      }
+
+      .btn-container {
+        display: flex;
+        flex-direction: column;
+        height: 200px;
+        margin-bottom: 10px;
+        align-items: center;
+        width: 400px;
+        input {
+          display: flex;
+        }
+
+        .btn-group {
+          display: flex;
+          flex-direction: column;
+
+          .ttt {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 220px;
+            margin-top: 16px;
+            .btn {
+              margin-left: 5px;
+              button {
+                width: 100px;
+                height: 40px;
+              }
+            }
+            .btn-validation {
+              margin-right: 5px;
+              button {
+                width: 100px;
+                height: 40px;
+              }
+            }
+          }
+
+          .Gif-Container {
+            display: flex;
+            flex-direction: row;
+            width: 220px;
+            height: 400px;
+            margin-top: 20px;
+            justify-content: space-around;
+            flex-wrap: wrap;
+
+            button {
+              margin-top: 10px;
+              margin-bottom: 10px;
+              width: 110px;
+              height: 100px;
+              img {
+                max-width: 100px;
+                max-height: 100px;
+              }
+              &:hover {
+                background-color: rgba(128, 128, 128, 0.274);
+              }
+            }
+            .show {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (orientation: portrait) {
+  form {
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    .form-Container {
+      display: flex;
+      flex-direction: column;
+      width: 400px;
+
+      .title-container {
+        display: flex;
+        justify-content: flex-start;
+        height: 60px;
+        width: 160px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.192);
+        button {
+          color: black;
+          width: 20px;
+          height: 20px;
+          padding: 30px;
+        }
+      }
+
+      .input-container {
+        display: flex;
+        flex-direction: column;
+
+        .User-container {
+          display: flex;
+          margin-left: 8px;
+          transform: translateY(10px);
+          .UserName {
+            margin: 10px;
+          }
+        }
+        .text-container {
+          img {
+            display: flex;
+            max-width: 100%;
+          }
+        }
+      }
+
+      .btn-container {
+        display: flex;
+        flex-direction: column;
+        height: 200px;
+        margin-bottom: 10px;
+        align-items: center;
+        width: 400px;
+        input {
+          display: flex;
+        }
+
+        .btn-group {
+          display: flex;
+          flex-direction: column;
+
+          .ttt {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 220px;
+            margin-top: 16px;
+            .btn {
+              margin-left: 5px;
+              button {
+                width: 100px;
+                height: 40px;
+              }
+            }
+            .btn-validation {
+              margin-right: 5px;
+              button {
+                width: 100px;
+                height: 40px;
+              }
+            }
+          }
+
+          .Gif-Container {
+            display: flex;
+            flex-direction: row;
+            width: 220px;
+            height: 400px;
+            margin-top: 20px;
+            justify-content: space-around;
+            flex-wrap: wrap;
+
+            button {
+              margin-top: 10px;
+              margin-bottom: 10px;
+              width: 110px;
+              height: 100px;
+              img {
+                max-width: 100px;
+                max-height: 100px;
+              }
+              &:hover {
+                background-color: rgba(128, 128, 128, 0.274);
+              }
+            }
+            .show {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Medium devices (tabletsPro, 1024px and up)
+@media (min-width: 1024px) and (orientation: portrait) {
+   form {
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    .form-Container {
+      display: flex;
+      flex-direction: column;
+      width: 400px;
+
+      .title-container {
+        display: flex;
+        justify-content: flex-start;
+        height: 60px;
+        width: 160px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.192);
+        button {
+          color: black;
+          width: 20px;
+          height: 20px;
+          padding: 30px;
+        }
+      }
+
+      .input-container {
+        display: flex;
+        flex-direction: column;
+
+        .User-container {
+          display: flex;
+          margin-left: 8px;
+          transform: translateY(10px);
+          .UserName {
+            margin: 10px;
+          }
+        }
+        .text-container {
+          img {
+            display: flex;
+            max-width: 100%;
+          }
+        }
+      }
+
+      .btn-container {
+        display: flex;
+        flex-direction: column;
+        height: 200px;
+        margin-bottom: 10px;
+        align-items: center;
+        width: 400px;
+        input {
+          display: flex;
+        }
+
+        .btn-group {
+          display: flex;
+          flex-direction: column;
+
+          .ttt {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 220px;
+            margin-top: 16px;
+            .btn {
+              margin-left: 5px;
+              button {
+                width: 100px;
+                height: 40px;
+              }
+            }
+            .btn-validation {
+              margin-right: 5px;
+              button {
+                width: 100px;
+                height: 40px;
+              }
+            }
+          }
+
+          .Gif-Container {
+            display: flex;
+            flex-direction: row;
+            width: 220px;
+            height: 400px;
+            margin-top: 20px;
+            justify-content: space-around;
+            flex-wrap: wrap;
+
+            button {
+              margin-top: 10px;
+              margin-bottom: 10px;
+              width: 110px;
+              height: 100px;
+              img {
+                max-width: 100px;
+                max-height: 100px;
+              }
+              &:hover {
+                background-color: rgba(128, 128, 128, 0.274);
+              }
+            }
+            .show {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (orientation: landscape) {
+    form {
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    .form-Container {
+      display: flex;
+      flex-direction: column;
+      width: 400px;
+
+      .title-container {
+        display: flex;
+        justify-content: flex-start;
+        height: 60px;
+        width: 160px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.192);
+        button {
+          color: black;
+          width: 20px;
+          height: 20px;
+          padding: 30px;
+        }
+      }
+
+      .input-container {
+        display: flex;
+        flex-direction: column;
+
+        .User-container {
+          display: flex;
+          margin-left: 8px;
+          transform: translateY(10px);
+          .UserName {
+            margin: 10px;
+          }
+        }
+        .text-container {
+          img {
+            display: flex;
+            max-width: 100%;
+          }
+        }
+      }
+
+      .btn-container {
+        display: flex;
+        flex-direction: column;
+        height: 200px;
+        margin-bottom: 10px;
+        align-items: center;
+        width: 400px;
+        input {
+          display: flex;
+        }
+
+        .btn-group {
+          display: flex;
+          flex-direction: column;
+
+          .ttt {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 220px;
+            margin-top: 16px;
+            .btn {
+              margin-left: 5px;
+              button {
+                width: 100px;
+                height: 40px;
+              }
+            }
+            .btn-validation {
+              margin-right: 5px;
+              button {
+                width: 100px;
+                height: 40px;
+              }
+            }
+          }
+
+          .Gif-Container {
+            display: flex;
+            flex-direction: row;
+            width: 220px;
+            height: 400px;
+            margin-top: 20px;
+            justify-content: space-around;
+            flex-wrap: wrap;
+
+            button {
+              margin-top: 10px;
+              margin-bottom: 10px;
+              width: 110px;
+              height: 100px;
+              img {
+                max-width: 100px;
+                max-height: 100px;
+              }
+              &:hover {
+                background-color: rgba(128, 128, 128, 0.274);
+              }
+            }
+            .show {
+              display: block;
+            }
+          }
         }
       }
     }

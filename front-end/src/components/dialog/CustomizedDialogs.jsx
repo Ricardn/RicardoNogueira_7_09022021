@@ -175,91 +175,97 @@ function CustomizedDialogs({ user }) {
             });
           })}
         >
-          <div className="title-container">
-            <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-              Créer un Post
-            </DialogTitle>
-          </div>
-          <div className="input-container">
-            <div className="User-container">
-              <Avatar className="userAvatar">
-                <span id="Image">{user.initials}</span>
-              </Avatar>
-              <span className="UserName" id="UserName">
-                {user.username}
-              </span>
+          <div className="form-Container">
+            <div className="title-container">
+              <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+                Créer un Post
+              </DialogTitle>
             </div>
-            <div className="text-container">
-              <MuiDialogContent>
-                <Box
-                  sx={{
-                    width: 500,
-                    maxWidth: "100%",
-                  }}
-                >
-                  <TextField
-                    className="textInput"
-                    InputProps={{ disableUnderline: true }}
-                    fullWidth
-                    placeholder="De quoi souhaitez vous discuter ?"
-                    id="fullWidth"
-                    type="text"
-                    rows={6}
-                    multiline
-                    required
-                    {...register("content", {
-                      required: "Ce champ est obligatoire",
-                    })}
-                  />
-                </Box>
-                <img id="blah" src={preview} alt="Votre Image" />
-              </MuiDialogContent>
-            </div>
-          </div>
-          <DialogActions>
-            <div className="btn-container">
-              <div className="btn">
-                <label htmlFor="contained-button-file">
-                  <Button variant="contained" size="medium" component="span">
-                    {" "}
-                    <input
-                      accept="image/*"
-                      type="file"
-                      onClick={onSelectFile}
-                      {...register("imageUrl", {
+            <div className="input-container">
+              <div className="User-container">
+                <Avatar className="userAvatar">
+                  <span id="Image">{user.initials}</span>
+                </Avatar>
+                <span className="UserName" id="UserName">
+                  {user.username}
+                </span>
+              </div>
+              <div className="text-container">
+                <MuiDialogContent>
+                  <Box
+                    sx={{
+                      width: 500,
+                      maxWidth: "100%",
+                    }}
+                  >
+                    <TextField
+                      className="textInput"
+                      InputProps={{ disableUnderline: true }}
+                      fullWidth
+                      placeholder="De quoi souhaitez vous discuter ?"
+                      id="fullWidth"
+                      type="text"
+                      rows={6}
+                      multiline
+                      required
+                      {...register("content", {
                         required: "Ce champ est obligatoire",
                       })}
                     />
-                  </Button>
-                </label>
-              </div>
-
-              <div className="btn">
-                <Button
-                  onClick={onClick}
-                  variant="contained"
-                  size="medium"
-                  component="span"
-                >
-                  <Gif />
-                  Gif
-                </Button>
-                <div id="Gif-Body" className="Gif-Body">
-                  {showText ? <Text /> : null}
-                </div>
-              </div>
-              <div className="btn-validation">
-                <Button
-                  type="submit"
-                  variant="contained"
-                  className={classes.button}
-                >
-                  Publier
-                  <SendIcon className="sendIcon" />
-                </Button>
+                  </Box>
+                  <img id="blah" src={preview} alt="" />
+                </MuiDialogContent>
               </div>
             </div>
-          </DialogActions>
+            <DialogActions>
+              <div className="btn-container">
+                <div className="btn">
+                  <label htmlFor="contained-button-file">
+                    <Button variant="contained" size="medium" component="span">
+                      {" "}
+                      <input
+                        accept="image/*"
+                        type="file"
+                        onClick={onSelectFile}
+                        {...register("imageUrl", {
+                          required: "Ce champ est obligatoire",
+                        })}
+                      />
+                    </Button>
+                  </label>
+                </div>
+                <div className="btn-group">
+                  <div className="ttt">
+                    <div className="btn">
+                      <Button
+                        onClick={onClick}
+                        variant="contained"
+                        size="medium"
+                        component="span"
+                      >
+                        <Gif />
+                        Gif
+                      </Button>
+                    </div>
+                    <div className="btn-validation">
+                      <Button
+                        type="submit"
+                        variant="contained"
+                        className={classes.button}
+                      >
+                        Publier
+                        <SendIcon className="sendIcon" />
+                      </Button>
+                    </div>
+                  </div>
+
+                  <div id="Gif-Body" className="Gif-Body">
+                    {showText ? <Text /> : null}
+                  </div>
+                </div>
+              </div>
+            </DialogActions>
+          </div>
         </form>
       </Dialog>
     </div>
