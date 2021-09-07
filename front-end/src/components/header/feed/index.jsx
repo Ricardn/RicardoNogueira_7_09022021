@@ -1,6 +1,5 @@
 import React from "react";
 import { toast } from "react-toastify";
-import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
@@ -22,14 +21,6 @@ function FeedNavBar() {
       window.location.href = "/";
     }, 3500);
   }
-
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      "& > *": {
-        margin: theme.spacing(1),
-      },
-    },
-  }));
 
   return (
     <div>

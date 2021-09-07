@@ -2,14 +2,12 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
-import { GetUser } from "../../components/functions";
 
 import TextField from "@material-ui/core/TextField";
 import ErrorIcon from "@material-ui/icons/Error";
 
 import Footer from "../../components/footer/footer";
 import Nav from "../../components/header/main/index";
-import Animation from "../../assets/images/animation.PNG";
 import character_1 from "../../assets/images/character_1.PNG";
 import character_2 from "../../assets/images/character_2.PNG";
 import character_3 from "../../assets/images/character_3.PNG";

@@ -8,7 +8,7 @@ import ErrorIcon from "@material-ui/icons/Error";
 import "./style.scss";
 import Nav from "../../components/header/logPage/index";
 import useUserStore from "../../store/user";
-import authService from "../../services/auth";
+//import authService from "../../services/auth";
 
 export default function SignIn() {
   const signIn = useUserStore((state) => state.signIn);

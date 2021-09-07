@@ -1,3 +1,4 @@
+/*
 import React, { useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
 
@@ -48,3 +49,4 @@ export function getUserId() {
   console.log("userId" + dataUser);
   return dataUser.userId;
 }
+*/

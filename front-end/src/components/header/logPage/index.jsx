@@ -1,8 +1,6 @@
 import React from "react";
 import "./style.scss";
-import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
 
 import Button from "../../../components/buttons/btn-return";
 

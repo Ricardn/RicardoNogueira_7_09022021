@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import FeedNavBar from "../../components/header/feed/";
 
 import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
 import InputLabel from "@material-ui/core/InputLabel";
 import TextField from "@material-ui/core/TextField";
 import ErrorIcon from "@material-ui/icons/Error";
@@ -11,7 +10,7 @@ import "react-toastify/dist/ReactToastify.min.css";
 import "./style.scss";
 
 import useUserStore from "../../store/user";
-import transformUser from "../../utils/transformUser";
+//import transformUser from "../../utils/transformUser";
 
 function testFunction() {
   if (window.confirm("Confirmer la suppression de mon compte!")) {
@@ -28,7 +27,7 @@ function showDiv(event) {
 
 export default function Profile() {
   const user = useUserStore((state) => state.user);
-  const userData = transformUser(user);
+  //const userData = transformUser(user);
 
   const {
     register,

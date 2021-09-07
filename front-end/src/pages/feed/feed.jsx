@@ -41,7 +41,6 @@ export default function Feed() {
     }
   }, [fetchPosts]);
 
-  const classes = useStyles();
 
   return (
     <div>

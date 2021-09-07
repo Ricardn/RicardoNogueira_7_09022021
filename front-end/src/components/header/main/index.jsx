@@ -1,8 +1,6 @@
 import React from "react";
 import "./style.scss";
 import { Link } from "react-router-dom";
-import ButtonGroup from "@material-ui/core/ButtonGroup";
-import { makeStyles } from "@material-ui/core/styles";
 
 import BtnSignup from "../../buttons/btn-square/index";
 import BtnSignin from "../../buttons/btn-signin/index";

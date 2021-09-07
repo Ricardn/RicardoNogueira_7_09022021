@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import ListGroup from "react-bootstrap/ListGroup";
 
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
@@ -30,10 +29,6 @@ import Laugh from "../../assets/gifs/Laugh.gif";
 import Thanks from "../../assets/gifs/Thanks.gif";
 
 import "./style.scss";
-
-function alertClicked() {
-  alert("You clicked the third ListGroupItem");
-}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -78,12 +73,7 @@ const DialogTitle = withStyles(styles)((props) => {
   );
 });
 
-const DialogContent = withStyles((theme) => ({
-  root: {
-    margin: 0,
-    padding: theme.spacing(2),
-  },
-}))(MuiDialogContent);
+
 
 const DialogActions = withStyles((theme) => ({
   root: {
@@ -132,7 +122,7 @@ function CustomizedDialogs({ user }) {
       setSelectedFile(undefined);
       return;
     }
-
+    console.log(e.target.files[0]);
     // I've kept this example simple by using the first image instead of multiple
     setSelectedFile(e.target.files[0]);
   };
@@ -226,10 +216,11 @@ function CustomizedDialogs({ user }) {
                       <input
                         accept="image/*"
                         type="file"
-                        onClick={onSelectFile}
+                        onChange={onSelectFile}
+                        /*
                         {...register("imageUrl", {
                           required: "Ce champ est obligatoire",
-                        })}
+                        })}*/
                       />
                     </Button>
                   </label>
