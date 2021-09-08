@@ -17,18 +17,24 @@ exports.getAllPosts = (req, res, next) => {
 };
 
 //Create a new post
-exports.createNewPost = (req, res, next) => {
+exports.createNewPost = async (req, res, next) => {
   try {
+    
     console.log(" try to create post");
+    console.log("req.file", req.file);
     const imageUrl = `${req.protocol}://${req.get("host")}/images/${
       req.file.filename
     }`;
 
+    console.log("imgUrl", imageUrl)
+
     if (!req.body.userId) {
-      res
-        .send(500)
+      return res
+        .status(500)
         .send({ error: "validation", message: "missing field userId" });
     }
+    
+    console.log(req.body);
 
     const post = {
       UserId: req.body.userId,
@@ -37,11 +43,12 @@ exports.createNewPost = (req, res, next) => {
       likes: 0,
       imageUrl: imageUrl,
     };
-    Post.create(post)
-      .then(() => res.status(201).json({ message: "Post created !" }))
-      .catch((error) =>
-        res.status(500).send({ error, message: "Unable to create a post" })
-      );
+
+
+    await Post.create(post);
+    console.log("post created")
+    res.status(201).json({ message: "Post created !" })
+
   } catch (error) {
     res.status(500).send({ error, message: error.message });
   }

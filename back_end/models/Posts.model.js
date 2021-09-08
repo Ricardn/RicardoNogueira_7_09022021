@@ -14,7 +14,7 @@ module.exports = (sequelize, Sequelize) => {
       unsigned: true,
       default: 0,
     },
-    imageURL: {
+    imageUrl: {
       type: Sequelize.STRING,
     },
   });
