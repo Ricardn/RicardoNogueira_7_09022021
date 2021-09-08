@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import MuiDialogTitle from "@material-ui/core/DialogTitle";
@@ -29,6 +30,21 @@ import Laugh from "../../assets/gifs/Laugh.gif";
 import Thanks from "../../assets/gifs/Thanks.gif";
 
 import "./style.scss";
+
+function handleConnection(response) {
+  const notifySuccess = () => toast.success("Postée avec succès !");
+  const notifyError = () => toast.error("Une erreur est survenu !");
+
+  if (response.status === 201) {
+    notifySuccess();
+    setTimeout(function () {
+      window.location.href = "/feed";
+    }, 3500);
+  } else {
+    notifyError();
+  }
+  console.log(response.status);
+}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -73,8 +89,6 @@ const DialogTitle = withStyles(styles)((props) => {
   );
 });
 
-
-
 const DialogActions = withStyles((theme) => ({
   root: {
     margin: 0,
@@ -110,27 +124,40 @@ function CustomizedDialogs({ user }) {
       return;
     }
 
-    const objectUrl = URL.createObjectURL(selectedFile);
-    setPreview(objectUrl);
+    // const objectUrl = URL.createObjectURL(selectedFile);
+    setPreview(selectedFile);
 
     // free memory when ever this component is unmounted
-    return () => URL.revokeObjectURL(objectUrl);
+    // return () => URL.revokeObjectURL(objectUrl);
   }, [selectedFile]);
-
-  const onSelectFile = (e) => {
-    if (!e.target.files || e.target.files.length === 0) {
-      setSelectedFile(undefined);
-      return;
-    }
-    console.log(e.target.files[0]);
-    // I've kept this example simple by using the first image instead of multiple
-    setSelectedFile(e.target.files[0]);
-  };
 
   const [showText, setShowText] = useState(false);
   const onClick = () => {
     setShowText(true);
   };
+
+  const fileInput = register("imageUrl", {
+    required: "Ce champ est obligatoire",
+  });
+
+  const onSelectFile = (e) => {
+    fileInput.onChange(e);
+    if (!e.target.files || e.target.files.length === 0) {
+      setSelectedFile(undefined);
+      return;
+    }
+    console.log(e.target.files[0]);
+
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.onload = () => {
+      setSelectedFile(reader.result);
+    };
+    reader.readAsDataURL(file);
+
+    // I've kept this example simple by using the first image instead of multiple
+  };
+
   //document.getElementById('Gif-Container').classList.toggle("show");
   return (
     <div>
@@ -145,15 +172,24 @@ function CustomizedDialogs({ user }) {
         <form
           onSubmit={handleSubmit((data) => {
             const token = getUserToken();
+
+            const formData = new FormData();
+            console.log("user id ", user.id);
+            formData.append("userId", user.id);
+            formData.append("content", data.content);
+            formData.append("image", data.imageUrl[0]);
+
+            console.log(formData);
+
             fetch("http://localhost:3000/api/posts", {
               method: "POST",
               headers: {
                 Accept: "application/json",
                 Authorization: "Bearer " + token,
-                "Content-Type": "application/json",
               },
-              body: JSON.stringify(data),
+              body: formData,
             }).then((response) => {
+              handleConnection(response);
               return response
                 .json()
                 .then((data) => {
@@ -214,13 +250,10 @@ function CustomizedDialogs({ user }) {
                     <Button variant="contained" size="medium" component="span">
                       {" "}
                       <input
-                        accept="image/*"
+                        // accept="image/*"
+                        {...fileInput}
                         type="file"
                         onChange={onSelectFile}
-                        /*
-                        {...register("imageUrl", {
-                          required: "Ce champ est obligatoire",
-                        })}*/
                       />
                     </Button>
                   </label>
@@ -291,24 +324,3 @@ CustomizedDialogs.propTypes = {
 };
 
 export default CustomizedDialogs;
-
-/*   onSubmit={handleSubmit((data) => {
-            fetch("http://localhost:3000/", {
-              method: "POST",
-              headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(data),
-            }).then((response) => {
-              return response
-                .json()
-                .then((data) => {
-                  console.log(data);
-                  return data;
-                })
-                .catch((err) => {
-                  console.log(err);
-                });
-            });
-          })}*/
