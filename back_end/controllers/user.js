@@ -42,6 +42,8 @@ exports.signin = (req, res, next) => {
             id: user.id,
             lastName: user.lastName,
             firstName: user.firstName,
+            isAdmin: user.isAdmin,
+
             token: jwt.sign(
               {
                 userId: user.id,

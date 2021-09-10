@@ -2,6 +2,7 @@ const db = require("../models/index");
 const { post } = require("../routes/user");
 const Post = db.Post;
 const User = db.User;
+const Comment = db.Comment;
 const op = db.Sequelize.op;
 
 //Get All Posts
@@ -9,6 +10,7 @@ exports.getAllPosts = (req, res, next) => {
   Post.findAll({
     attributes: { exclude: ["createdAt", "updateAt"] },
     include: ["Comments", "User"],
+    order: [["createdAt", "DESC"]],
   })
     .then((data) => res.status(200).send(data))
     .catch((error) =>
@@ -19,21 +21,20 @@ exports.getAllPosts = (req, res, next) => {
 //Create a new post
 exports.createNewPost = async (req, res, next) => {
   try {
-    
     console.log(" try to create post");
     console.log("req.file", req.file);
     const imageUrl = `${req.protocol}://${req.get("host")}/images/${
       req.file.filename
     }`;
 
-    console.log("imgUrl", imageUrl)
+    console.log("imgUrl", imageUrl);
 
     if (!req.body.userId) {
       return res
         .status(500)
         .send({ error: "validation", message: "missing field userId" });
     }
-    
+
     console.log(req.body);
 
     const post = {
@@ -44,11 +45,9 @@ exports.createNewPost = async (req, res, next) => {
       imageUrl: imageUrl,
     };
 
-
     await Post.create(post);
-    console.log("post created")
-    res.status(201).json({ message: "Post created !" })
-
+    console.log("post created");
+    res.status(201).json({ message: "Post created !" });
   } catch (error) {
     res.status(500).send({ error, message: error.message });
   }
