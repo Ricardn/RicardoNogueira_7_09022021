@@ -12,6 +12,7 @@ import "./feed.scss";
 import useUserStore from "../../store/user";
 import usePostStore from "../../store/post";
 import transformUser from "../../utils/transformUser";
+import checkAdmin from "../../utils/checkAdmin";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Feed() {
+  checkAdmin();
   const user = useUserStore((state) => state.user);
   const userData = transformUser(user);
 

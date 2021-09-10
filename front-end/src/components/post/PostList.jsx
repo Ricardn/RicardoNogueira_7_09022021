@@ -7,7 +7,7 @@ import useUserStore from "../../store/user";
 import transformUser from "../../utils/transformUser";
 
 const PostsList = ({ posts }) => {
-  console.log("pospospo", posts);
+  console.log("PostList", posts);
   return (
     <div>
       {posts.map((post) => (

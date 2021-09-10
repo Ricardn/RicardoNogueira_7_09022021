@@ -37,8 +37,13 @@ $color-secondary: white;
           .post-header {
             display: flex;
             height: 20px;
-            max-width: 140px;
+            width: 90%;
             font-size: small;
+            justify-content: space-between;
+            button {
+              width: 40px;
+              border-radius: 10px;
+            }
             .PostTime {
               font-size: small;
               width: 250px;
@@ -129,11 +134,18 @@ $color-secondary: white;
           flex-direction: column;
           margin-top: 8px;
           margin-left: 10px;
+          justify-content: space-between;
           .post-header {
             display: flex;
             height: 20px;
-            max-width: 140px;
+            width: 100%;
             font-size: small;
+            justify-content: space-between;
+            button {
+              width: 40px;
+              border-radius: 10px;
+              margin-right: 20px;
+            }
             .PostTime {
               font-size: small;
               width: 250px;
@@ -225,11 +237,19 @@ $color-secondary: white;
           flex-direction: column;
           margin-top: 8px;
           margin-left: 10px;
+          width: 100%;
+
           .post-header {
             display: flex;
             height: 20px;
-            max-width: 140px;
+            width: 100%;
             font-size: small;
+            justify-content: space-between;
+            button {
+              width: 40px;
+              border-radius: 10px;
+              margin-right: 20px;
+            }
             .PostTime {
               font-size: small;
               width: 250px;

@@ -1,18 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import Badge from "@material-ui/core/Badge";
 import { Public } from "@material-ui/icons";
 import Avatar from "@material-ui/core/Avatar";
-import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ChatIcon from "@material-ui/icons/Chat";
 import ShareIcon from "@material-ui/icons/Share";
 import transformUser from "../../utils/transformUser";
 import DayJS from "react-dayjs";
 
+import SimpleMenu from "../menu/Menu";
 import useUserStore from "../../store/user";
 import "./style.scss";
 
@@ -41,6 +42,7 @@ const PostContainer = ({ postData }) => {
                   Le <DayJS format="MM-DD-YYYY à HH:mm">{Postdate}</DayJS>
                   <Public />
                 </span>
+               <SimpleMenu/>
               </div>
             </div>
           </div>
