@@ -1,5 +1,19 @@
 import getUserToken from "../utils/getUserToken";
 
+const standardize = async (response) => {
+  if (response.status !== 200) {
+    return {
+      status: response.status,
+      data: null,
+    };
+  }
+
+  return {
+    status: 200,
+    data: await response.json(),
+  };
+};
+
 const getPost = async (id) => {
   try {
     await fetch("http://localhost:3000/api/posts", {
@@ -29,52 +43,19 @@ const getPost = async (id) => {
   }
 };
 
-const getPosts = async (token) => {
+const getPosts = async (params) => {
   try {
     const token = getUserToken();
-
-    await fetch("http://localhost:3000/api/posts", {
+    const response = await fetch("http://localhost:3000/api/posts", {
       method: "GET",
       headers: {
         Accept: "application/json",
         Authorization: "Bearer " + token,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(),
+      body: JSON.stringify(params),
     });
-
-    return {
-      status: 200,
-      data: [
-        {
-          content: "Some post content",
-          likes: 340,
-          comments: [],
-          user: {
-            firstName: "John",
-            lastName: "Doe",
-          },
-        },
-        {
-          content: "Some post content",
-          likes: 340,
-          comments: [],
-          user: {
-            firstName: "Jane",
-            lastName: "Doe",
-          },
-        },
-        {
-          content: "Some post content",
-          likes: 340,
-          comments: [],
-          user: {
-            firstName: "Jimmy",
-            lastName: "Doe",
-          },
-        },
-      ],
-    };
+    return await standardize(response);
   } catch (err) {
     throw err;
   }

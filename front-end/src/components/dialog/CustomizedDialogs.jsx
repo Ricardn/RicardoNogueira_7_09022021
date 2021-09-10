@@ -115,6 +115,7 @@ function CustomizedDialogs({ user }) {
     formState: { errors },
   } = useForm();
   const [selectedFile, setSelectedFile] = useState();
+  const [selectedImage, setSelectedImage] = useState();
   const [preview, setPreview] = useState();
 
   useEffect(() => {
@@ -123,12 +124,7 @@ function CustomizedDialogs({ user }) {
 
       return;
     }
-
-    // const objectUrl = URL.createObjectURL(selectedFile);
     setPreview(selectedFile);
-
-    // free memory when ever this component is unmounted
-    // return () => URL.revokeObjectURL(objectUrl);
   }, [selectedFile]);
 
   const [showText, setShowText] = useState(false);
@@ -154,9 +150,65 @@ function CustomizedDialogs({ user }) {
       setSelectedFile(reader.result);
     };
     reader.readAsDataURL(file);
-
-    // I've kept this example simple by using the first image instead of multiple
   };
+
+
+  /* Gif */
+
+    const imageInput = register("imageUrl");
+
+
+  useEffect(() => {
+    if (!selectedImage) {
+      setPreview(undefined);
+
+      return;
+    }
+    setPreview(selectedImage);
+  }, [selectedImage]);
+
+   const onSelectGif = (e) => {
+     imageInput.onChange(e);
+     if (!e.target.image || e.target.image.length === 0) {
+       setSelectedImage(undefined);
+       return;
+     }
+     console.log(e.target.image[0]);
+
+     const image = e.target.image[0];
+     const reader = new FileReader();
+     reader.onload = () => {
+       setSelectedImage(reader.result);
+     };
+     reader.readAsDataURL(image);
+   };
+
+  const Text = () => (
+    <div className="Gif-Container" id="Gif-Container">
+      <Button>
+        <input
+          type="image"
+          src={Facepalm}
+          alt="FacePalm"
+          width="100px"
+          onChange={onSelectGif}
+          {...imageInput}
+        />
+      </Button>
+      <Button>
+        <img src={GoodMorning} alt="FacePalm" />
+      </Button>
+      <Button>
+        <img src={ItsFriday} alt="FacePalm" />
+      </Button>
+      <Button>
+        <img src={Laugh} alt="FacePalm" />
+      </Button>
+      <Button>
+        <img src={Thanks} alt="FacePalm" />
+      </Button>
+    </div>
+  );
 
   //document.getElementById('Gif-Container').classList.toggle("show");
   return (
@@ -250,7 +302,7 @@ function CustomizedDialogs({ user }) {
                     <Button variant="contained" size="medium" component="span">
                       {" "}
                       <input
-                        // accept="image/*"
+                        accept="image/*"
                         {...fileInput}
                         type="file"
                         onChange={onSelectFile}
@@ -296,25 +348,7 @@ function CustomizedDialogs({ user }) {
   );
 }
 
-const Text = () => (
-  <div className="Gif-Container" id="Gif-Container">
-    <Button>
-      <img src={Facepalm} alt="FacePalm" />
-    </Button>
-    <Button>
-      <img src={GoodMorning} alt="FacePalm" />
-    </Button>
-    <Button>
-      <img src={ItsFriday} alt="FacePalm" />
-    </Button>
-    <Button>
-      <img src={Laugh} alt="FacePalm" />
-    </Button>
-    <Button>
-      <img src={Thanks} alt="FacePalm" />
-    </Button>
-  </div>
-);
+//<img src={Facepalm} alt="FacePalm" />;
 
 CustomizedDialogs.propTypes = {
   user: PropTypes.shape({

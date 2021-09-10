@@ -25,9 +25,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Feed() {
-  // https://github.com/pmndrs/zustand#then-bind-your-components-and-thats-it
   const user = useUserStore((state) => state.user);
-
   const userData = transformUser(user);
 
   const postsList = usePostStore((state) => state.postsList);
@@ -40,7 +38,6 @@ export default function Feed() {
       fetchPosts();
     }
   }, [fetchPosts]);
-
 
   return (
     <div>

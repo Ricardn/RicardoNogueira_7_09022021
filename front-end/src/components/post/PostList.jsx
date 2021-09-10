@@ -3,11 +3,15 @@ import PropTypes from "prop-types";
 import PostContainer from "./PostContainer";
 import "./style.scss";
 
+import useUserStore from "../../store/user";
+import transformUser from "../../utils/transformUser";
+
 const PostsList = ({ posts }) => {
+  console.log("pospospo", posts);
   return (
     <div>
       {posts.map((post) => (
-        <PostContainer postData={post} />
+        <PostContainer key={post.id} postData={post} />
       ))}
     </div>
   );
@@ -18,6 +22,7 @@ PostsList.propTypes = {
     PropTypes.shape({
       content: PropTypes.string.isRequired,
       likes: PropTypes.number.isRequired,
+      imageUrl: PropTypes.string.isRequired,
       commentaires: PropTypes.arrayOf(PropTypes.shape()).isRequired,
       user: PropTypes.shape({
         firstName: PropTypes.string.isRequired,

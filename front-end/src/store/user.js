@@ -3,8 +3,10 @@ import { persist } from "zustand/middleware";
 import authService from "../services/auth";
 
 const initialUserValue = {
+  id: null,
   lastName: "",
   firstName: "",
+  isAdmin: "0",
   token: null,
 };
 
@@ -16,6 +18,7 @@ const useUserStore = create(
       setUser: (data) =>
         set({
           user: {
+            id: data.id,
             lastName: data.lastName,
             firstName: data.firstName,
             token: data.token,
@@ -24,14 +27,14 @@ const useUserStore = create(
       signIn: async (params) => {
         try {
           const response = await authService.signIn(params);
-
-          console.log(response);
           if (response.data !== null) {
             // Update current zustand store
             set({
               user: {
+                id: response.data.id,
                 lastName: response.data.lastName,
                 firstName: response.data.firstName,
+                isAdmin: response.data.isAdmin,
                 token: response.data.token,
               },
             });

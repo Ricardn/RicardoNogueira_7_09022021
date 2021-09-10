@@ -2,6 +2,7 @@ import React from "react";
 import FeedNavBar from "../../components/header/feed/";
 
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import InputLabel from "@material-ui/core/InputLabel";
 import TextField from "@material-ui/core/TextField";
 import ErrorIcon from "@material-ui/icons/Error";
@@ -10,13 +11,68 @@ import "react-toastify/dist/ReactToastify.min.css";
 import "./style.scss";
 
 import useUserStore from "../../store/user";
-//import transformUser from "../../utils/transformUser";
+import getUserToken from "../../utils/getUserToken";
 
-function testFunction() {
+function UpdateProfile(params) {
+  const token = getUserToken();
+  const UserId = JSON.parse(localStorage.getItem("user")).state?.user.id;
+
+  fetch("http://localhost:3000/api/users/myprofile/" + UserId, {
+    method: "PUT",
+    headers: {
+      Authorization: "BEARER " + token,
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(params),
+  }).then((response) => {
+    return response
+      .then((data) => {
+        console.log(data);
+        return data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+}
+
+function DeleteProfile(params) {
+  const token = getUserToken();
+  const UserId = JSON.parse(localStorage.getItem("user")).state?.user.id;
+
+  fetch("http://localhost:3000/api/users/myprofile/" + UserId, {
+    method: "DELETE",
+    headers: {
+      Authorization: "BEARER " + token,
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(params),
+  }).then((response) => {
+    return response
+      .json()
+      .then((data) => {
+        console.log(data);
+        return data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+}
+
+function DeleteUser() {
+  const notifySuccess = () => toast.success("Votre compte a été supprimé !");
+  const notifyError = () => toast.error("Une erreur est survenu !");
   if (window.confirm("Confirmer la suppression de mon compte!")) {
-    console.log("ok");
+    notifySuccess();
+    setTimeout(function () {
+      DeleteProfile();
+      window.location.href = "/";
+    }, 3500);
   } else {
-    console.log("nop");
+    notifyError();
   }
 }
 
@@ -27,7 +83,6 @@ function showDiv(event) {
 
 export default function Profile() {
   const user = useUserStore((state) => state.user);
-  //const userData = transformUser(user);
 
   const {
     register,
@@ -40,6 +95,7 @@ export default function Profile() {
       <FeedNavBar />
       <div className="profile-container">
         <h1>Vos Informations</h1>
+
         <form
           onSubmit={handleSubmit((data) => {
             fetch("http://localhost:3000/users/myprofile/:id", {
@@ -74,6 +130,7 @@ export default function Profile() {
               type="text"
               variant="outlined"
               margin="normal"
+              disabled
               {...register("firstName")}
             />
             {errors.firstName && (
@@ -95,6 +152,7 @@ export default function Profile() {
               type="text"
               variant="outlined"
               margin="normal"
+              disabled
               {...register("firstName")}
             />
             {errors.firstName && (
@@ -181,13 +239,14 @@ export default function Profile() {
               )}
             </div>
           </div>
-          <button className="SaveBtn" type="submit">
+          <button className="SaveBtn" type="submit" onClick={UpdateProfile}>
             <span>
               <SaveIcon />
             </span>
             Sauvegarder
           </button>
-          <button onClick={testFunction} className="removeBtn">
+
+          <button onClick={DeleteUser} className="removeBtn">
             Supprimer mon compte
           </button>
         </form>

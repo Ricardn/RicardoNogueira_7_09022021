@@ -4,86 +4,287 @@ $color-lighter: #eef3f898;
 $color-darker: #eef3f8;
 $color-secondary: white;
 
-.post {
-  display: flex;
-  flex-direction: column;
-  margin-top: 40px;
-  width: 680px;
-  height: 580px;
-  padding: 40px;
-  background-color: $color-secondary;
-  box-shadow: 0px 10px 13px -7px #0000004f;
-  .user-container {
+/* Smartphones (portrait) ----------- */
+@media screen and (min-width: 320px) and (max-width: 414px) and (orientation: portrait) {
+  .container-middle {
     display: flex;
-    width: 680px;
-    max-height: 40px;
-
-    .post-header {
-      max-height: 20px;
-      max-width: 140px;
+    margin: auto;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    .post {
       display: flex;
-      font-size: small;
-      svg {
-        font-size: small;
+      flex-direction: column;
+      margin-top: 40px;
+      height: 600px;
+      background-color: $color-secondary;
+      box-shadow: 0px 10px 13px -7px #0000004f;
+      .user-container {
+        display: flex;
+        flex-direction: row;
+        height: 40px;
+        width: 100%;
+        padding: 5px;
+        .user-profile {
+          max-width: 50px;
+          max-height: 50px;
+        }
+        .user-name {
+          display: flex;
+          flex-direction: column;
+          margin-top: 8px;
+          margin-left: 10px;
+          .post-header {
+            display: flex;
+            height: 20px;
+            max-width: 140px;
+            font-size: small;
+            .PostTime {
+              font-size: small;
+              width: 250px;
+              svg {
+                font-size: small;
+              }
+            }
+          }
+        }
       }
-    }
+      .post-container {
+        display: flex;
+        flex-direction: column;
+        max-width: 414px;
+        .post-content {
+          display: flex;
+          flex-direction: column;
+          margin-top: 30px;
+          height: 414px;
+          padding: 10px;
+          p {
+            word-wrap: break-word;
+            margin-bottom: 10px;
+          }
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+      .post-footer {
+        display: flex;
+        flex-direction: column;
+        .post-status {
+          display: flex;
+          justify-content: space-between;
+          font-size: small;
+          span {
+            span {
+              margin-left: 14px;
+              font-weight: 400;
+            }
+          }
+        }
+        .post-btn {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 10px;
 
-    .user-profile {
-      max-width: 50px;
-      max-height: 50px;
-      margin-right: 10px;
-    }
-    .user-name {
-      width: 500px;
-      margin-top: 8px;
-    }
-    .post-settings {
-      margin-left: 60px;
-      button {
-        height: 30px;
-        width: 30px;
-        border-radius: 20px;
+          button {
+            display: flex;
+            height: 40px;
+            width: 140px;
+          }
+        }
       }
     }
   }
-  .post-container {
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (orientation: portrait) {
+  .container-middle {
     display: flex;
+    margin: auto;
     flex-direction: column;
-    margin-top: 20px;
-    width: 680px;
-    height: 530px;
-    background-color: salmon;
-    .post-header {
+    width: 100%;
+    height: 100%;
+    .post {
       display: flex;
-      height: 40px;
-      flex-direction: row;
-      background-color: seagreen;
-    }
-    .post-content {
-      height: 440px;
-      background-color: yellowgreen;
-    }
-    .post-status {
-      display: flex;
-      justify-content: space-between;
-      font-size: medium;
-      height: 14px;
-      padding: 10px;
-      background-color: thistle;
-      svg {
-        font-size: small;
+      flex-direction: column;
+      margin-top: 40px;
+      height: 600px;
+      background-color: $color-secondary;
+      box-shadow: 0px 10px 13px -7px #0000004f;
+      .user-container {
+        display: flex;
+        flex-direction: row;
+        height: 40px;
+        width: 100%;
+        padding: 5px;
+        .user-profile {
+          max-width: 50px;
+          max-height: 50px;
+        }
+        .user-name {
+          display: flex;
+          flex-direction: column;
+          margin-top: 8px;
+          margin-left: 10px;
+          .post-header {
+            display: flex;
+            height: 20px;
+            max-width: 140px;
+            font-size: small;
+            .PostTime {
+              font-size: small;
+              width: 250px;
+              svg {
+                font-size: small;
+              }
+            }
+          }
+        }
+      }
+      .post-container {
+        display: flex;
+        flex-direction: column;
+        max-width: 414px;
+        .post-content {
+          display: flex;
+          flex-direction: column;
+          margin-top: 30px;
+          height: 414px;
+          padding: 10px;
+          p {
+            word-wrap: break-word;
+            margin-bottom: 10px;
+          }
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+      .post-footer {
+        display: flex;
+        flex-direction: column;
+        .post-status {
+          display: flex;
+          justify-content: space-between;
+          font-size: small;
+          span {
+            span {
+              margin-left: 14px;
+              font-weight: 400;
+            }
+          }
+        }
+        .post-btn {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 10px;
+
+          button {
+            display: flex;
+            height: 40px;
+            width: 140px;
+          }
+        }
       }
     }
-    .post-footer {
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) and (orientation: landscape) {
+  .container-middle {
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    height: 100%;
+
+    .post {
       display: flex;
-      max-height: 80px;
+      flex-direction: column;
+      height: 800px;
+      width: 600px;
       padding: 10px;
-      justify-content: space-around;
-      background-color: steelblue;
-      button {
-        margin-right: 20px;
-        margin-left: 20px;
+      background-color: $color-secondary;
+      box-shadow: 0px 10px 13px -7px #0000004f;
+      .user-container {
+        display: flex;
+        flex-direction: row;
         height: 40px;
+        width: 100%;
+        padding: 5px;
+        .user-profile {
+          max-width: 50px;
+          max-height: 50px;
+        }
+        .user-name {
+          display: flex;
+          flex-direction: column;
+          margin-top: 8px;
+          margin-left: 10px;
+          .post-header {
+            display: flex;
+            height: 20px;
+            max-width: 140px;
+            font-size: small;
+            .PostTime {
+              font-size: small;
+              width: 250px;
+              svg {
+                font-size: small;
+              }
+            }
+          }
+        }
+      }
+      .post-container {
+        display: flex;
+        flex-direction: column;
+        max-width: 600px;
+        .post-content {
+          display: flex;
+          flex-direction: column;
+          margin-top: 30px;
+          height: 600px;
+          padding: 10px;
+          p {
+            word-wrap: break-word;
+            margin-bottom: 10px;
+          }
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+      .post-footer {
+        display: flex;
+        flex-direction: column;
+        .post-status {
+          display: flex;
+          justify-content: space-between;
+          font-size: small;
+          span {
+            span {
+              margin-left: 14px;
+              font-weight: 400;
+            }
+          }
+        }
+        .post-btn {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 10px;
+
+          button {
+            display: flex;
+            height: 40px;
+            width: 140px;
+          }
+        }
       }
     }
   }
