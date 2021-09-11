@@ -152,65 +152,33 @@ function CustomizedDialogs({ user }) {
     reader.readAsDataURL(file);
   };
 
-
   /* Gif */
 
-    const imageInput = register("imageUrl");
-
-
-  useEffect(() => {
-    if (!selectedImage) {
-      setPreview(undefined);
-
-      return;
-    }
-    setPreview(selectedImage);
-  }, [selectedImage]);
-
-   const onSelectGif = (e) => {
-     imageInput.onChange(e);
-     if (!e.target.image || e.target.image.length === 0) {
-       setSelectedImage(undefined);
-       return;
-     }
-     console.log(e.target.image[0]);
-
-     const image = e.target.image[0];
-     const reader = new FileReader();
-     reader.onload = () => {
-       setSelectedImage(reader.result);
-     };
-     reader.readAsDataURL(image);
-   };
+  const onSelectGif = (gifPath) => {
+    setPreview(gifPath);
+    console.log(gifPath);
+  };
 
   const Text = () => (
     <div className="Gif-Container" id="Gif-Container">
-      <Button>
-        <input
-          type="image"
-          src={Facepalm}
-          alt="FacePalm"
-          width="100px"
-          onChange={onSelectGif}
-          {...imageInput}
-        />
+      <Button onClick={() => onSelectGif(Facepalm)} {...fileInput}>
+        <img src={Facepalm} alt="FacePalm" />
       </Button>
-      <Button>
-        <img src={GoodMorning} alt="FacePalm" />
+      <Button onClick={() => onSelectGif(GoodMorning)} {...fileInput}>
+        <img src={GoodMorning} alt="GoodMorning" />
       </Button>
-      <Button>
-        <img src={ItsFriday} alt="FacePalm" />
+      <Button onClick={() => onSelectGif(ItsFriday)} {...fileInput}>
+        <img src={ItsFriday} alt="ItsFriday" />
       </Button>
-      <Button>
-        <img src={Laugh} alt="FacePalm" />
+      <Button onClick={() => onSelectGif(Laugh)} {...fileInput}>
+        <img src={Laugh} alt="Laugh" />
       </Button>
-      <Button>
-        <img src={Thanks} alt="FacePalm" />
+      <Button onClick={() => onSelectGif(Thanks)} {...fileInput}>
+        <img src={Thanks} alt="Thanks" />
       </Button>
     </div>
   );
 
-  //document.getElementById('Gif-Container').classList.toggle("show");
   return (
     <div>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
@@ -226,11 +194,10 @@ function CustomizedDialogs({ user }) {
             const token = getUserToken();
 
             const formData = new FormData();
-            console.log("user id ", user.id);
+
             formData.append("userId", user.id);
             formData.append("content", data.content);
             formData.append("image", data.imageUrl[0]);
-
             console.log(formData);
 
             fetch("http://localhost:3000/api/posts", {

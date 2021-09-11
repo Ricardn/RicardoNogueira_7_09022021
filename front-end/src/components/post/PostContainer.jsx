@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
+import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
+import { Gif } from "@material-ui/icons";
 import Badge from "@material-ui/core/Badge";
 import { Public } from "@material-ui/icons";
 import Avatar from "@material-ui/core/Avatar";
@@ -16,8 +20,89 @@ import DayJS from "react-dayjs";
 import SimpleMenu from "../menu/Menu";
 import useUserStore from "../../store/user";
 import "./style.scss";
+import getUserToken from "../../utils/getUserToken";
 
-const PostContainer = ({ postData }) => {
+function handleConnection(response) {
+  const notifySuccess = () => toast.success("Postée avec succès !");
+  const notifyError = () => toast.error("Une erreur est survenu !");
+
+  if (response.status === 201) {
+    notifySuccess();
+    setTimeout(function () {
+      window.location.href = "/feed";
+    }, 3500);
+  } else {
+    notifyError();
+  }
+  console.log(response.status);
+}
+
+function addComment({ postData }) {
+  const token = getUserToken();
+  const UserId = JSON.parse(localStorage.getItem("user")).state?.user.id;
+
+  fetch("http://localhost:3000/api/comments/", {
+    method: "POST",
+    headers: {
+      Authorization: "BEARER " + token,
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(),
+  }).then((response) => {
+    //handleConnection(response);
+    console.log("response", response);
+    return response
+      .json()
+      .then((data) => {
+        console.log("data", data);
+        return data;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+}
+
+function PostContainer({ postData }) {
+  console.log(postData);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  console.log(register.content);
+
+  const Text = () => (
+    <div className="Comment-Container" id="Comment-Container">
+      <div className="Comment-body">
+        <div className="inputComment">
+          <TextField
+            className="commentInput"
+            placeholder="Votre commentaire"
+            type="text"
+            rows={1}
+            multiline
+            required
+            {...register("content", {
+              required: "Ce champ est obligatoire",
+            })}
+          />
+        </div>
+        <Button variant="contained" size="medium" component="span">
+          <Gif />
+          Gif
+        </Button>
+        <Button variant="contained" onClick={addComment}>
+          Envoyer
+        </Button>
+      </div>
+    </div>
+  );
+
+  const [visible, setVisible] = React.useState(false);
+
   const user = useUserStore((state) => state.user);
   const userData = transformUser(postData.User);
 
@@ -28,30 +113,30 @@ const PostContainer = ({ postData }) => {
   return (
     <div>
       <div className="container-middle">
-        <div className="post">
-          <div className="user-container">
-            <div className="user-profile">
+        <div className="post" id={postData.id}>
+          <div className="user-container" id={postData.id}>
+            <div className="user-profile" id={postData.id}>
               <Avatar className="userAvatar">
                 <span id="Image">{userData.initials}</span>
               </Avatar>
             </div>
-            <div className="user-name">
+            <div className="user-name" id={postData.id}>
               <span className="UserName">{UserPosted}</span>
-              <div className="post-header">
+              <div className="post-header" id={postData.id}>
                 <span className="PostTime">
                   Le <DayJS format="MM-DD-YYYY à HH:mm">{Postdate}</DayJS>
                   <Public />
                 </span>
-               <SimpleMenu/>
+                <SimpleMenu />
               </div>
             </div>
           </div>
-          <div className="post-container">
+          <div className="post-container" id={postData.id}>
             <div className="post-content">
               <p>{postData.content}</p>
               <img src={postData.imageUrl} alt="" />
             </div>
-            <div className="post-footer">
+            <div className="post-footer" id={postData.id}>
               <div className="post-status">
                 <span>
                   <Badge badgeContent={1}></Badge>
@@ -63,12 +148,18 @@ const PostContainer = ({ postData }) => {
                 </span>
               </div>
               <div className="post-btn">
-                <Button variant="contained">
-                  <FavoriteIcon /> J'aime
+                <Button variant="contained">J'aime</Button>
+                <Button
+                  variant="contained"
+                  id={postData.id}
+                  onClick={() => setVisible(!visible)}
+                >
+                  {visible ? "Commentaires" : "Commentaires"}
                 </Button>
-                <Button variant="contained">
-                  <ChatIcon /> Commenter
-                </Button>
+              </div>
+              <div id="Comment-Container" className="Comment-Container">
+                {visible ? <Text /> : null}
+                {Text}
               </div>
             </div>
           </div>
@@ -76,15 +167,15 @@ const PostContainer = ({ postData }) => {
       </div>
     </div>
   );
-};
+}
 
 PostContainer.propTypes = {
   postData: PropTypes.shape({
     content: PropTypes.string.isRequired,
     likes: PropTypes.number.isRequired,
     imageUrl: PropTypes.string.isRequired,
-    commentaires: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-    user: PropTypes.shape({
+    Comments: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+    User: PropTypes.shape({
       firstName: PropTypes.string.isRequired,
       lastName: PropTypes.string.isRequired,
     }).isRequired,

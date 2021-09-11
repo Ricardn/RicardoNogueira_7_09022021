@@ -32,7 +32,7 @@ export default function Feed() {
 
   const postsList = usePostStore((state) => state.postsList);
   const fetchPosts = usePostStore((state) => state.fetchPosts);
-
+  localStorage.setItem("postsList", JSON.stringify(postsList));
   // use effect with empty dependency array
   // will trigger only once at component mount
   useEffect(() => {
@@ -62,7 +62,7 @@ export default function Feed() {
                 <CustomizedDialogs className="dialog" user={userData} />
               </div>
             </div>
-            <PostList posts={postsList ? postsList : []} />
+            <PostList user={userData} posts={postsList ? postsList : []} />
           </div>
         </div>
         <div className="container-right"></div>

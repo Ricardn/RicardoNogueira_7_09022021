@@ -6,31 +6,6 @@ import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 
 import getUserToken from "../../utils/getUserToken";
 
-function DeletePost(params) {
-  const token = getUserToken();
-  const UserId = JSON.parse(localStorage.getItem("user")).state?.user.id;
-
-  fetch("http://localhost:3000/api/posts/" + UserId, {
-    method: "DELETE",
-    headers: {
-      Authorization: "BEARER " + token,
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(params),
-  }).then((response) => {
-    return response
-      .json()
-      .then((data) => {
-        console.log(data);
-        return data;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  });
-}
-
 export default function SimpleMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -59,8 +34,8 @@ export default function SimpleMenu() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem >Partager</MenuItem>
-        <MenuItem onClick={handleClose}>Suprimer</MenuItem>
+        <MenuItem>Partager</MenuItem>
+        <MenuItem>Suprimer</MenuItem>
       </Menu>
     </div>
   );
