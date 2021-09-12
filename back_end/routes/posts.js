@@ -24,12 +24,9 @@ router.post(
 );
 
 //Update a Post
-router.put("/:id", auth, postCtrl.updatePost);
+//router.put("./:id", auth, postCtrl.updatePost);
 
 //Delete a Post
-router.delete("./:id", auth, postCtrl.deletePost);
-
-//Like a Post
-router.put("/like/:id", auth, postCtrl.likePost);
+router.delete("/:id", auth, postCtrl.deletePost);
 
 module.exports = router;

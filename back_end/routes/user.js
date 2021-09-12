@@ -10,10 +10,7 @@ router.post("/auth/signup", userCtrl.signup);
 router.post("/auth/signin", userCtrl.signin);
 
 //Get Own Profile
-//router.get("/users/myprofile/:id", auth, userCtrl.getMyProfile);
-
-//Update Own Profile
-router.put("/users/myprofile/:id", auth, userCtrl.updateMyProfile);
+router.get("/users/myprofile/:id", auth, userCtrl.getMyProfile);
 
 //Delete Own Profile
 router.delete("/users/myprofile/:id", auth, userCtrl.deleteMyProfile);

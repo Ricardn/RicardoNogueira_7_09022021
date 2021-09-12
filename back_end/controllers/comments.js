@@ -14,6 +14,8 @@ exports.addComment = (req, res, next) => {
     postId: req.body.postId,
     content: req.body.content,
   };
+    console.log("comment",comment);
+
 
   Comment.create(comment)
     .then(() => {

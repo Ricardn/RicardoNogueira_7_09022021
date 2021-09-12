@@ -75,30 +75,6 @@ exports.getMyProfile = (req, res, next) => {
     );
 };
 
-//Update Own Profile
-exports.updateMyProfile = (req, res, next) => {
-  const connectedId = req.params.id;
-
-  User.update(req.body, {
-    where: { id: connectedId },
-  })
-    .then((num) => {
-      if (num == 1) {
-        res.send({ message: "Profile updated." });
-      } else {
-        res.send({
-          message: `Impossible to update your Profile.`,
-        });
-      }
-    })
-    .catch((error) => {
-      res.status(500).send({
-        error,
-        message: "An error occurred while updating the Profile",
-      });
-    });
-};
-
 //Delete Own Profile
 exports.deleteMyProfile = (req, res, next) => {
   const connectedId = req.params.id;
