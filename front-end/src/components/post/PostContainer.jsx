@@ -36,10 +36,14 @@ function handleConnection(response) {
   }
   console.log(response.status);
 }
+/*
+function getPostId(e) {
+  const PostId = e.currentTarget.id;
+  console.log("postID", PostId);
+}*/
 
 function addComment({ postData }) {
   const token = getUserToken();
-  const UserId = JSON.parse(localStorage.getItem("user")).state?.user.id;
 
   fetch("http://localhost:3000/api/comments/", {
     method: "POST",
@@ -65,14 +69,15 @@ function addComment({ postData }) {
 }
 
 function PostContainer({ postData }) {
-  console.log(postData);
+  const SelectedPostId = localStorage.setItem("PostId", postData.id);
+
+  console.log("SelectedPostId", SelectedPostId);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
-  console.log(register.content);
 
   const Text = () => (
     <div className="Comment-Container" id="Comment-Container">
@@ -94,7 +99,7 @@ function PostContainer({ postData }) {
           <Gif />
           Gif
         </Button>
-        <Button variant="contained" onClick={addComment}>
+        <Button id={postData.id} variant="contained" type="submit">
           Envoyer
         </Button>
       </div>
@@ -158,8 +163,7 @@ function PostContainer({ postData }) {
                 </Button>
               </div>
               <div id="Comment-Container" className="Comment-Container">
-                {visible ? <Text /> : null}
-                {Text}
+                {visible ? <Text post={postData} /> : null}
               </div>
             </div>
           </div>

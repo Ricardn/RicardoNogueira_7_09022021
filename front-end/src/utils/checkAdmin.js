@@ -1,6 +1,5 @@
-const checkAdmin = () => {
+const CheckAdmin = () => {
   const isAdmin = JSON.parse(localStorage.getItem("user")).state?.user?.isAdmin;
-  console.log(isAdmin);
 
   if (isAdmin === false) {
     return false;
@@ -9,4 +8,4 @@ const checkAdmin = () => {
   }
 };
 
-export default checkAdmin;
+export default CheckAdmin;

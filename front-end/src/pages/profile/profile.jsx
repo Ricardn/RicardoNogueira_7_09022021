@@ -3,6 +3,7 @@ import FeedNavBar from "../../components/header/feed/";
 
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import Button from "@material-ui/core/Button";
 import InputLabel from "@material-ui/core/InputLabel";
 import TextField from "@material-ui/core/TextField";
 import ErrorIcon from "@material-ui/icons/Error";
@@ -13,7 +14,7 @@ import "./style.scss";
 import useUserStore from "../../store/user";
 import getUserToken from "../../utils/getUserToken";
 
-function UpdateProfile(params) {
+function UpdateProfile() {
   const token = getUserToken();
   const UserId = JSON.parse(localStorage.getItem("user")).state?.user.id;
 
@@ -24,9 +25,10 @@ function UpdateProfile(params) {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(params),
+    body: JSON.stringify(),
   }).then((response) => {
     return response
+      .json()
       .then((data) => {
         console.log(data);
         return data;
@@ -96,29 +98,7 @@ export default function Profile() {
       <div className="profile-container">
         <h1>Vos Informations</h1>
 
-        <form
-          onSubmit={handleSubmit((data) => {
-            fetch("http://localhost:3000/users/myprofile/:id", {
-              method: "PUT",
-              headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(data),
-            }).then((response) => {
-              console.log(response);
-              return response
-                .json()
-                .then((data) => {
-                  console.log(data);
-                  return data;
-                })
-                .catch((err) => {
-                  console.log(err);
-                });
-            });
-          })}
-        >
+        <form>
           <div className="ProfileInput">
             <div className="LabelInput">
               <InputLabel>Nom</InputLabel>
@@ -150,9 +130,9 @@ export default function Profile() {
               id="firstName"
               defaultValue={user.firstName}
               type="text"
+              disabled
               variant="outlined"
               margin="normal"
-              disabled
               {...register("firstName")}
             />
             {errors.firstName && (
@@ -162,89 +142,6 @@ export default function Profile() {
               </p>
             )}
           </div>
-          <button onClick={showDiv} className="ResetPassword">
-            Modifier mon mot de passe
-          </button>
-          <div id="PasswordContainer" className="PasswordContainer">
-            <div className="input">
-              <TextField
-                className="password"
-                id="password"
-                label="Mot de Passe actuel*"
-                type="password"
-                variant="outlined"
-                margin="normal"
-                {...register("password", {
-                  required: "Ce champ est obligatoire",
-                  minLength: {
-                    value: 8,
-                    message:
-                      "Le mot de passe doit contenir au moins 8 caractères",
-                  },
-                })}
-              />
-              {errors.password && (
-                <p>
-                  <ErrorIcon />
-                  {errors.password.message}
-                </p>
-              )}
-            </div>
-            <div className="input">
-              <TextField
-                className="password"
-                id="password"
-                label="Nouveau Mot de Passe*"
-                type="password"
-                variant="outlined"
-                margin="normal"
-                {...register("password", {
-                  required: "Ce champ est obligatoire",
-                  minLength: {
-                    value: 8,
-                    message:
-                      "Le mot de passe doit contenir au moins 8 caractères",
-                  },
-                })}
-              />
-              {errors.password && (
-                <p>
-                  <ErrorIcon />
-                  {errors.password.message}
-                </p>
-              )}
-            </div>
-            <div className="input">
-              <TextField
-                className="password"
-                id="password"
-                label="Confirmer Mot de Passe*"
-                type="password"
-                variant="outlined"
-                margin="normal"
-                {...register("password", {
-                  required: "Ce champ est obligatoire",
-                  minLength: {
-                    value: 8,
-                    message:
-                      "Le mot de passe doit contenir au moins 8 caractères",
-                  },
-                })}
-              />
-              {errors.password && (
-                <p>
-                  <ErrorIcon />
-                  {errors.password.message}
-                </p>
-              )}
-            </div>
-          </div>
-          <button className="SaveBtn" type="submit" onClick={UpdateProfile}>
-            <span>
-              <SaveIcon />
-            </span>
-            Sauvegarder
-          </button>
 
           <button onClick={DeleteUser} className="removeBtn">
             Supprimer mon compte
