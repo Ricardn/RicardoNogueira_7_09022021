@@ -3,6 +3,9 @@ import PropTypes from "prop-types";
 import PostContainer from "./PostContainer";
 import "./style.scss";
 
+import useUserStore from "../../store/user";
+import transformUser from "../../utils/transformUser";
+
 const PostsList = ({ posts }) => {
   console.log("PostList", posts);
   return (
