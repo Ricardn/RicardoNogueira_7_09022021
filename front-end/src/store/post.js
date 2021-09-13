@@ -30,11 +30,6 @@ const usePostStore = create((set) => ({
         postsList: response.data,
       });
     }
-    /*
-    console.log("PostList", response.data);
-    console.log("Post-1", response.data[0]);
-    console.log("Post-User", response.data[0].User);
-    console.log("Post-Content", response.data[0].content);*/
 
     return response;
   },

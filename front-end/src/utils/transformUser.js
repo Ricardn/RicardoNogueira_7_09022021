@@ -4,4 +4,6 @@ const transformUser = (user) => ({
   initials: (user.firstName.charAt(0) + user.lastName.charAt(0)).toUpperCase(),
 });
 
+console.log(transformUser)
+
 export default transformUser;

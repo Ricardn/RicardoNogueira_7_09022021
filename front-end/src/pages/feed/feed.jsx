@@ -1,17 +1,19 @@
 import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Avatar from "@material-ui/core/Avatar";
-
-import PostList from "../../components/post/PostList";
-import FeedNavBar from "../../components/header/feed/";
 import { UserCard } from "../../components/card";
 import { CustomizedDialogs } from "../../components/dialog";
 
-import "./feed.scss";
+import Avatar from "@material-ui/core/Avatar";
+import PostList from "../../components/post/PostList";
+import FeedNavBar from "../../components/header/feed/";
 
 import useUserStore from "../../store/user";
 import usePostStore from "../../store/post";
 import transformUser from "../../utils/transformUser";
+
+import "./feed.scss";
+
+
 import checkAdmin from "../../utils/checkAdmin";
 
 const useStyles = makeStyles((theme) => ({
@@ -26,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Feed() {
-  checkAdmin();
+  //checkAdmin();
   const user = useUserStore((state) => state.user);
   const userData = transformUser(user);
 

@@ -4,24 +4,11 @@ const auth = require("../middleware/auth");
 const postCtrl = require("../controllers/posts");
 const multer = require("../middleware/multer-config");
 
-const logMiddleware = (message) => (req, res, next) => {
-  console.log(message);
-  next();
-};
-
 //Get All posts
 router.get("/", auth, postCtrl.getAllPosts);
 
 //Create a new post
-router.post(
-  "/",
-  logMiddleware("before auth"),
-  auth,
-  logMiddleware("before multer"),
-  multer,
-  logMiddleware("after multer"),
-  postCtrl.createNewPost
-);
+router.post("/", auth, multer, postCtrl.createNewPost);
 
 //Update a Post
 //router.put("./:id", auth, postCtrl.updatePost);

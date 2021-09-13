@@ -82,17 +82,13 @@ exports.deleteMyProfile = (req, res, next) => {
   User.destroy({
     where: { id: connectedId },
   })
-    .then((num) => {
-      if (num == 1) {
-        res.send({ message: "Your Profile has been deleted !" });
-      } else {
-        res.send({ message: "Impossible to delete your Profile" });
-      }
+    .then(() => {
+      res.status(200).send({ message: "Your Profile has been deleted !!" });
     })
     .catch((error) => {
       res.status(500).send({
         error,
-        message: "An error occurred while deleting the Profile",
+        message: "Impossible to delete your Profile",
       });
     });
 };

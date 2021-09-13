@@ -14,31 +14,6 @@ import "./style.scss";
 import useUserStore from "../../store/user";
 import getUserToken from "../../utils/getUserToken";
 
-function UpdateProfile() {
-  const token = getUserToken();
-  const UserId = JSON.parse(localStorage.getItem("user")).state?.user.id;
-
-  fetch("http://localhost:3000/api/users/myprofile/" + UserId, {
-    method: "PUT",
-    headers: {
-      Authorization: "BEARER " + token,
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(),
-  }).then((response) => {
-    return response
-      .json()
-      .then((data) => {
-        console.log(data);
-        return data;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  });
-}
-
 function DeleteProfile(params) {
   const token = getUserToken();
   const UserId = JSON.parse(localStorage.getItem("user")).state?.user.id;
@@ -65,22 +40,14 @@ function DeleteProfile(params) {
 }
 
 function DeleteUser() {
-  const notifySuccess = () => toast.success("Votre compte a été supprimé !");
   const notifyError = () => toast.error("Une erreur est survenu !");
   if (window.confirm("Confirmer la suppression de mon compte!")) {
-    notifySuccess();
-    setTimeout(function () {
-      DeleteProfile();
-      window.location.href = "/";
-    }, 3500);
+    DeleteProfile();
+    localStorage.clear();
+    document.location.reload();
   } else {
     notifyError();
   }
-}
-
-function showDiv(event) {
-  document.getElementById("PasswordContainer").className = "visiblediv";
-  event.preventDefault();
 }
 
 export default function Profile() {

@@ -21,21 +21,15 @@ exports.getAllPosts = (req, res, next) => {
 //Create a new post
 exports.createNewPost = async (req, res, next) => {
   try {
-    console.log(" try to create post");
-    console.log("req.file", req.file);
     const imageUrl = `${req.protocol}://${req.get("host")}/images/${
       req.file.filename
     }`;
-
-    console.log("imgUrl", imageUrl);
 
     if (!req.body.userId) {
       return res
         .status(500)
         .send({ error: "validation", message: "missing field userId" });
     }
-
-    console.log(req.body);
 
     const post = {
       UserId: req.body.userId,
@@ -79,61 +73,20 @@ exports.updatePost = (req, res, next) => {
     });
 };
 
-//Delete a Post
+//Delete Own Profile
 exports.deletePost = (req, res, next) => {
-  const id = req.params.id;
+  const postId = req.params.id;
 
   Post.destroy({
-    where: { id: id },
+    where: { id: postId },
   })
-    .then((num) => {
-      if (num == 1) {
-        res.status(200).send({ message: "Post has been deleted successfully" });
-      } else {
-        res.status(401).send({ message: "Unable to delete a post" });
-      }
+    .then(() => {
+      res.status(200).send({ message: "Your Post has been deleted !!" });
     })
-    .catch((err) => {
-      res
-        .status(500)
-        .send({ message: "An error occurred while deleting the post" });
+    .catch((error) => {
+      res.status(500).send({
+        error,
+        message: "Impossible to delete your Post",
+      });
     });
-};
-
-//Like a Post
-exports.likePost = (req, res, next) => {
-  const postId = req.params.id;
-  userId = req.body.userId;
-  likeValue = req.body.likes;
-
-  Post.findByPk(postId)
-    .then((post) => {
-      switch (likeValue) {
-        case 1: //User liked
-          Post.update({ likes: post.likes + 1 }, { where: { id: postId } })
-            .then(() => {
-              post.addUser(userId);
-              User.findByPk(userId).then((user) => {
-                user.addPost(postId);
-              });
-            })
-            .then(() => res.status(201).json({ message: "Post Liked" }));
-          break;
-
-        case 1:
-          Post.update({ likes: post.likes - 1 }, { where: { id: postId } })
-            .then(() => {
-              post.removeUser(userId);
-              User.findByPk(userId).then((user) => {
-                user.addPost(postId);
-              });
-            })
-            .then(() => res.status(201).json({ message: "Post UnLiked" }));
-          break;
-      }
-    })
-    .then(() => res.status(201))
-    .catch((error) =>
-      res.status(500).send({ error, message: "Unable to like a post" })
-    );
 };
