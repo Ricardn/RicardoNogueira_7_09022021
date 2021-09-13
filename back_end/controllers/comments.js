@@ -8,19 +8,19 @@ const op = db.Sequelize.op;
 //Write a Post Comment
 
 exports.addComment = (req, res, next) => {
+  console.log(req.body);
   let created = false;
   const comment = {
-    userId: req.body.userId,
-    postId: req.body.postId,
+    UserId: req.body.userId,
+    PostId: req.body.postId,
     content: req.body.content,
+    date: Date.now(),
   };
-    console.log("comment",comment);
-
 
   Comment.create(comment)
     .then(() => {
       created = true;
-      res.status(201).send(created);
+      res.status(201).json({ message: "Comment sent !" });
     })
     .catch((error) =>
       res.status(500).send({ error, message: "Unable to create a comment" })
@@ -33,9 +33,17 @@ exports.deteleComment = (req, res, next) => {
 
   Comment.destroy({
     where: { id: commentId },
-  }).catch((err) => {
-    res
-      .status(500)
-      .send({ message: "An error occurred while deleting the comment" });
-  });
+  })
+    .then((num) => {
+      if (num == 1) {
+        res.status(200).send({ message: "Post has been deleted successfully" });
+      } else {
+        res.status(401).send({ message: "Unable to delete a post" });
+      }
+    })
+    .catch((err) => {
+      res
+        .status(500)
+        .send({ message: "An error occurred while deleting the post" });
+    });
 };

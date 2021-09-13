@@ -31,9 +31,17 @@ db.Comment = require("./Comments.model")(sequelize, Sequelize);
 //Relations
 
 db.User.hasMany(db.Post);
+db.User.hasMany(db.Comment);
+
 db.Comment.belongsTo(db.Post, {
   onDelete: "CASCADE",
 });
+
+db.Comment.belongsTo(db.User, {
+  onDelete: "CASCADE",
+  as: "User",
+});
+
 db.Post.hasMany(db.Comment, { as: "Comments" });
 db.Post.belongsTo(db.User, { as: "User" });
 
