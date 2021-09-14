@@ -91,7 +91,7 @@ const PostContainer = ({ postData }) => {
                   Le <DayJS format="MM-DD-YYYY à HH:mm">{Postdate}</DayJS>
                   <Public />
                 </span>
-                <SimpleMenu />
+                <SimpleMenu postId={postData.id} />
               </div>
             </div>
           </div>

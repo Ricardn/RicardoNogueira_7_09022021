@@ -272,6 +272,7 @@ function CustomizedDialogs({ user }) {
                         accept="image/*"
                         {...fileInput}
                         type="file"
+                        required
                         onChange={onSelectFile}
                       />
                     </Button>

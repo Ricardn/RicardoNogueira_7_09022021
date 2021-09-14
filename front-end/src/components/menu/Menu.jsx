@@ -25,18 +25,20 @@ function handleConnection(response) {
   console.log(response.status);
 }
 
-function DeletePost() {
+function DeletePost(postId) {
   const token = getUserToken();
   const UserId = JSON.parse(localStorage.getItem("user")).state?.user.id;
 
-  fetch("http://localhost:3000/api/posts/" + UserId, {
+  fetch("http://localhost:3000/api/posts/" + postId, {
     method: "DELETE",
     headers: {
       Authorization: "BEARER " + token,
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(),
+    body: JSON.stringify({
+      userId: UserId,
+    }),
   }).then((response) => {
     handleConnection(response);
     return response
@@ -51,7 +53,7 @@ function DeletePost() {
   });
 }
 
-export default function SimpleMenu() {
+export default function SimpleMenu({ postId }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -85,7 +87,7 @@ export default function SimpleMenu() {
         </div>
         <div className="ownPost" id="ownPost">
           <MenuItem>
-            <button onClick={DeletePost}>Supprimer</button>
+            <button onClick={() => DeletePost(postId)}>Supprimer</button>
           </MenuItem>
         </div>
       </Menu>
