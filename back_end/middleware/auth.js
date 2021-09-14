@@ -11,6 +11,8 @@ module.exports = (req, res, next) => {
     //Get UserId from the decoded Token.
     const userId = decodedToken.userId;
 
+    req.user = decodedToken;
+
     //If the userId do not match with the userID from the decoded Token throw error message.
     if (req.body.userId && req.body.userId !== userId) {
       throw "User ID non valable !";

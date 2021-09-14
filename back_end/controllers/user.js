@@ -43,10 +43,10 @@ exports.signin = (req, res, next) => {
             lastName: user.lastName,
             firstName: user.firstName,
             isAdmin: user.isAdmin,
-
             token: jwt.sign(
               {
                 userId: user.id,
+                isAdmin: user.isAdmin,
               },
               process.env.TOKEN,
               {

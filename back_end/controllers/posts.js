@@ -73,20 +73,21 @@ exports.updatePost = (req, res, next) => {
     });
 };
 
-//Delete Own Profile
-exports.deletePost = (req, res, next) => {
-  const postId = req.params.id;
 
-  Post.destroy({
-    where: { id: postId },
-  })
-    .then(() => {
-      res.status(200).send({ message: "Your Post has been deleted !!" });
-    })
-    .catch((error) => {
-      res.status(500).send({
-        error,
-        message: "Impossible to delete your Post",
-      });
+//Delete Post 
+exports.deletePost = async (req, res, next) => {
+  const postId = req.params.id;
+  
+  const postToDelete = await Post.findByPk(postId);
+
+  console.log(postToDelete)
+  if(req.user.userId === postToDelete.UserId || req.user.isAdmin) {
+    await postToDelete.destroy();
+    res.status(200).send({ message: "Your Post has been deleted !!" }); 
+  }else{
+    res.status(500).send({
+      error: 500,
+      message: "You are not allowed to delete this post",
     });
+  }
 };
